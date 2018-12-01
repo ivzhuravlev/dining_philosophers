@@ -13,11 +13,12 @@ namespace dph
 		Q_OBJECT
 		
 		public:
-			Philosopher(QMutex& leftFork, QMutex& rightFork, QSemaphore& footMan,
-						PhilParameters params);
+			Philosopher(QMutex* leftFork, QMutex* rightFork, QSemaphore* footMan,
+						PhilParameters params, QObject* parent = nullptr);
 		
 		signals:
-			void status(PhilosopherEvent s);
+			void sendEvent(PhilosopherEvent s);
+			void finished();
 			
 		public slots:
 			void start();
@@ -31,9 +32,9 @@ namespace dph
 			void eat();
 			void putForks();
 			
-			QMutex&		_leftFork;
-			QMutex&		_rightFork;
-			QSemaphore&	_footMan;
+			QMutex*		_leftFork;
+			QMutex*		_rightFork;
+			QSemaphore*	_footMan;
 		
 			std::atomic<bool> _stopFlag;
 			PhilParameters	_params;

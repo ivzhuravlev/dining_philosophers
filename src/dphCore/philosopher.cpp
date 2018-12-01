@@ -4,7 +4,8 @@
 using namespace dph;
 
 Philosopher::Philosopher(QMutex& leftFork, QMutex& rightFork, QSemaphore& footMan,
-						PhilParameters params) :
+						PhilParameters params, QObject* parent = nullptr) :
+	QObject(parent)
 	_leftFork(leftFork),
 	_rightFork(rightFork),
 	_footMan(footMan),
@@ -14,6 +15,7 @@ Philosopher::Philosopher(QMutex& leftFork, QMutex& rightFork, QSemaphore& footMa
 	
 void Philosopher::start()
 {
+	_stopFlag.store(false);
 	process();
 }
 	
@@ -31,37 +33,38 @@ void Philosopher::process()
 		eat();
 		putForks();
 	}
+	emit finished();
 }
 
 void Philosopher::getForks()
 {
-	emit status(PhilosopherEvent::Waiting);
+	emit sendEvent(PhilosophersendEvent::Waiting);
 	
-	_leftFork.lock();
-	emit status(PhilosopherEvent::LeftForkTaken);
+	_leftFork->lock();
+	emit sendEvent(PhilosophersendEvent::LeftForkTaken);
 	
-	_rightFork.lock();
-	emit status(PhilosopherEvent::RightForkTaken);
+	_rightFork->lock();
+	emit sendEvent(PhilosophersendEvent::RightForkTaken);
 }
 
 void Philosopher::eat()
 {
-	emit status(PhilosopherEvent::Eating);
+	emit sendEvent(PhilosophersendEvent::Eating);
 	QThread::msleep(_params.eatDuration.count());
 }
 
 void Philosopher::putForks()
 {
-	_leftFork.unlock();
-	emit status(PhilosopherEvent::LeftForkReleased);
+	_leftFork->unlock();
+	emit sendEvent(PhilosophersendEvent::LeftForkReleased);
 	
-	_rightFork.unlock();
-	emit status(PhilosopherEvent::RightForkReleased);
+	_rightFork->unlock();
+	emit sendEvent(PhilosophersendEvent::RightForkReleased);
 }
 
 void Philosopher::think()
 {
-	emit status(PhilosopherEvent::Thinking);
+	emit sendEvent(PhilosophersendEvent::Thinking);
 	QThread::msleep(_params.thinkDuration.count());
 }
 
