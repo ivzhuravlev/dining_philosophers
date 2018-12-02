@@ -2,7 +2,7 @@
 
 namespace dph
 {
-	class enum PhilosopherEvent
+	enum class PhilosopherEvent
 	{
 		Eating = 0,
 		Thinking,
@@ -11,18 +11,18 @@ namespace dph
 		RightForkTaken,
 		LeftForkReleased,
 		RightForkReleased
-	}
+	};
 	
-	class enum PhilosopherStatus
+	enum class PhilosopherStatus
 	{
 		Eat = 0,
 		Think,
 		Wait
-	}
+	};
 	
-	class enum ForkStatus
+	enum class ForkStatus
 	{
 		Available = 0,
 		Occupied
-	}
+	};
 }
