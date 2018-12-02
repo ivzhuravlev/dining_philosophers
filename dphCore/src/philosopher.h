@@ -1,6 +1,8 @@
 #pragma once
 
 #include "status.h"
+#include "philparameters.h"
+
 #include <QObject>
 #include <QMutex>
 #include <QSemaphore>

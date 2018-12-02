@@ -1,4 +1,6 @@
 #include "dinner.h"
+#include "philparameters.h"
+#include "philosopher.h"
 
 using namespace dph;
 
@@ -13,12 +15,12 @@ void Dinner::init()
 {
 	_footMan = std::make_unique<QSemaphore>(_philNum - 1);
 	
-	for(int i = 0; i < philNum, ++i)
+	for(int i = 0; i < _philNum; ++i)
 	{
-		_forks.append(std::make_unique<QMutex>());
+		_forks.push_back(std::make_unique<QMutex>());
 	}
 	
-	for(int i = 0; i < philNum, ++i)
+	for(int i = 0; i < _philNum; ++i)
 	{
 		PhilParameters param(i);
 		Philosopher* phil = new Philosopher(leftFork(i), rightFork(i), _footMan.get(), param);

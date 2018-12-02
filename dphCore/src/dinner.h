@@ -6,7 +6,9 @@
 #include <QVector>
 #include <QThread>
 #include <QMutex>
+#include <QSemaphore>
 #include <memory>
+#include <vector>
 
 namespace dph
 {
@@ -31,14 +33,14 @@ namespace dph
 		
 	private:
 		void init();
-		int leftFork(int phil);
-		int rightFork(int phil);
+		QMutex* leftFork(int phil);
+		QMutex* rightFork(int phil);
 		
 		const int _philNum;
 		QVector<QThread*>					_threads;
 		QVector<Philosopher*>				_philosophers;
-		QVector<std::unique_ptr<QMutex>>	_forks;
+		std::vector<std::unique_ptr<QMutex>>	_forks;
 		std::unique_ptr<QSemaphore>			_footMan;
 		
-	}
+	};
 }
