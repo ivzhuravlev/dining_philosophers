@@ -22,3 +22,5 @@ include_directories("src")
 
 add_library(${PROJECT_NAME} STATIC ${H_FILES} ${CPP_FILES})
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
+
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/test")
