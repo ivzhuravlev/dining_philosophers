@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/start.png</file>
+        <file>resources/stop.png</file>
+        <file>resources/settings.png</file>		
+        <file>resources/exit.png</file>
+    </qresource>
+</RCC>
