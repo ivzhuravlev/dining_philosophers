@@ -7,7 +7,7 @@ project(dphCore)
 #message("Autogen dir " ${AUTOGEN_BUILD_DIR})
 
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_PREFIX_PATH "C:/Qt/5.11.2/msvc2015/lib/cmake" "C:/Install/Catch2/lib/cmake")
+
 find_package(Qt5Core CONFIG REQUIRED)
 
 set(H_FILES "src/dinner.h"
