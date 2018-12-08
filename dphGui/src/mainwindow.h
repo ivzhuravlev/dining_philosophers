@@ -10,6 +10,5 @@ public:
 
 private:
 	void createActions();
-	QRect MainWindow::findAvailableWindowGeometry()
-	
+	QRect MainWindow::findAvailableWindowGeometry();
 };

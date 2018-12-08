@@ -1,11 +1,16 @@
 #include "mainwindow.h"
 
+#include <QApplication>
+#include <QScreen>
+#include <QStyle>
 #include <QAction>
+#include <QMenuBar>
 #include <QMenu>
+#include <QToolBar>
 #include <QIcon>
 
 MainWindow::MainWindow(QWidget* parent) :
-	QWidget(parent)
+	QMainWindow(parent)
 {
 	createActions();
 	setGeometry(findAvailableWindowGeometry());
@@ -36,7 +41,7 @@ void MainWindow::createActions()
 QRect MainWindow::findAvailableWindowGeometry()
 {
 	const QRect& avGeom = qApp->primaryScreen()->availableGeometry();
-	const QSize size(avGeom.height() * 0.25, avGeom.height() * 0.5);
+	const QSize size(avGeom.height() * 0.33, avGeom.height() * 0.5);
 
 	return QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, size, avGeom);
 }

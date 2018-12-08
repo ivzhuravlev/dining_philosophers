@@ -1,4 +1,4 @@
-#include "philosopher.h"
+#include "dphCore/philosopher.h"
 #include <QThread>
 
 using namespace dph;

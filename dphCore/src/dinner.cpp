@@ -1,6 +1,6 @@
-#include "dinner.h"
-#include "philparameters.h"
-#include "philosopher.h"
+#include "dphCore/dinner.h"
+#include "dphCore/philparameters.h"
+#include "dphCore/philosopher.h"
 
 using namespace dph;
 

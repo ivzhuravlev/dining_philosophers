@@ -7,6 +7,7 @@ int main(int argc, char* argv[])
 	QCoreApplication::setOrganizationName("IZhuravlev");
 	QCoreApplication::setApplicationName("Dining Philosophers");
 	QCoreApplication::setApplicationVersion("1.0.0");
+
 	MainWindow w;
 	w.show();
 	return app.exec();

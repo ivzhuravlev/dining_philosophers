@@ -1,5 +1,5 @@
 #include <catch2/catch.hpp>
-#include "philparameters.h"
+#include "dphCore/philparameters.h"
 #include <chrono>
 
 TEST_CASE("Philparameters default constraction", "[core]")
