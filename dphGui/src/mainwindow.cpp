@@ -8,11 +8,15 @@
 #include <QMenu>
 #include <QToolBar>
 #include <QIcon>
+#include <QPlainTextEdit>
 
 MainWindow::MainWindow(QWidget* parent) :
 	QMainWindow(parent)
 {
+	createWidgets();
 	createActions();
+
+	setCentralWidget(_logEdit);
 	setGeometry(findAvailableWindowGeometry());
 }
 
@@ -35,7 +39,14 @@ void MainWindow::createActions()
 
 	QAction* exitAct = new QAction(QIcon(":/resources/exit.png"), tr("&Exit"), this);
 	exitAct->setToolTip(tr("Go away"));
+	connect(exitAct, SIGNAL(triggered()), SLOT(close()));
 	actionMenu->addAction(exitAct);
+}
+
+void MainWindow::createWidgets()
+{
+	_logEdit = new QPlainTextEdit(this);
+	_logEdit->setReadOnly(true);
 }
 
 QRect MainWindow::findAvailableWindowGeometry()
