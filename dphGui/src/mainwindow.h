@@ -1,7 +1,7 @@
 #include <QMainWindow>
 
 class QRect;
-class QPlainTextEdit;
+class LogWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -14,5 +14,5 @@ private:
 	void createWidgets();
 	QRect findAvailableWindowGeometry();
 
-	QPlainTextEdit* _logEdit;
+	LogWidget* _logWidget;
 };

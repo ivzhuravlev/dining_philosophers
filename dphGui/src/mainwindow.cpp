@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "logwidget.h"
 
 #include <QApplication>
 #include <QScreen>
@@ -8,7 +9,6 @@
 #include <QMenu>
 #include <QToolBar>
 #include <QIcon>
-#include <QPlainTextEdit>
 
 MainWindow::MainWindow(QWidget* parent) :
 	QMainWindow(parent)
@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget* parent) :
 	createWidgets();
 	createActions();
 
-	setCentralWidget(_logEdit);
+	setCentralWidget(_logWidget);
 	setGeometry(findAvailableWindowGeometry());
 }
 
@@ -45,8 +45,7 @@ void MainWindow::createActions()
 
 void MainWindow::createWidgets()
 {
-	_logEdit = new QPlainTextEdit(this);
-	_logEdit->setReadOnly(true);
+	_logWidget = new LogWidget(this);
 }
 
 QRect MainWindow::findAvailableWindowGeometry()

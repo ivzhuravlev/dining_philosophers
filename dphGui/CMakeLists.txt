@@ -17,10 +17,12 @@ find_package(Qt5Gui CONFIG REQUIRED)
 find_package(Qt5Widgets CONFIG REQUIRED)
 
 # Set source files to build
-set(H_FILES src/mainwindow.h)
+set(H_FILES src/mainwindow.h
+			src/logwidget.h)
 
 set(CPP_FILES	src/mainwindow.cpp
-				src/main.cpp)
+				src/main.cpp
+				src/logwidget.cpp)
 
 set(QRC_FILES	src/resources.qrc)
 
