@@ -1,18 +1,7 @@
 #pragma once
 
 namespace dph
-{
-	enum class PhilosopherEvent
-	{
-		Eating = 0,
-		Thinking,
-		Waiting,
-		LeftForkTaken,
-		RightForkTaken,
-		LeftForkReleased,
-		RightForkReleased
-	};
-	
+{	
 	enum class PhilosopherStatus
 	{
 		Eat = 0,

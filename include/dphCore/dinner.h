@@ -1,6 +1,7 @@
 #pragma once
 
 #include "status.h"
+#include "philevent.h"
 
 #include <QObject>
 #include <QVector>

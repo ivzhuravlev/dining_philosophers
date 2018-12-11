@@ -1,4 +1,5 @@
 #include "dphCore/philosopher.h"
+#include "dphCore/philevent.h"
 #include <QThread>
 
 using namespace dph;
@@ -38,33 +39,33 @@ void Philosopher::process()
 
 void Philosopher::getForks()
 {
-	emit sendEvent(PhilosopherEvent::Waiting);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, Waiting));
 	
 	_leftFork->lock();
-	emit sendEvent(PhilosopherEvent::LeftForkTaken);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, LeftForkTaken);
 	
 	_rightFork->lock();
-	emit sendEvent(PhilosopherEvent::RightForkTaken);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, RightForkTaken);
 }
 
 void Philosopher::eat()
 {
-	emit sendEvent(PhilosopherEvent::Eating);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, Eating));
 	QThread::msleep(_params.eatDuration.count());
 }
 
 void Philosopher::putForks()
 {
 	_leftFork->unlock();
-	emit sendEvent(PhilosopherEvent::LeftForkReleased);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, LeftForkReleased);
 	
 	_rightFork->unlock();
-	emit sendEvent(PhilosopherEvent::RightForkReleased);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, RightForkReleased);
 }
 
 void Philosopher::think()
 {
-	emit sendEvent(PhilosopherEvent::Thinking);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, Thinking));
 	QThread::msleep(_params.thinkDuration.count());
 }
 
