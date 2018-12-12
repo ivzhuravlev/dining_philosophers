@@ -8,6 +8,8 @@ Dinner::Dinner(int philNum, QObject* parent) :
 	QObject(parent),
 	_philNum(philNum)
 	{
+		qRegisterMetaType<PhilosopherStatus>("PhilosopherStatus");
+		qRegisterMetaType<ForkStatus>("ForkStatus");
 		init();
 	}
 	
@@ -27,20 +29,59 @@ void Dinner::init()
 		QThread* thread = new QThread(this);
 		
 		phil->moveToThread(thread);
-		QObject::connect(thread, &QThread::started, phil, &Philosopher::start);
 		QObject::connect(phil, &Philosopher::sendEvent, this, &Dinner::receivedEvent);
-		QObject::connect(phil, &Philosopher::finished, thread, &QThread::quit);
 		QObject::connect(thread, &QThread::finished, phil, &QObject::deleteLater);
 		
 		_threads.append(thread);
 		_philosophers.append(phil);
 	}
+
+	for(QThread* t : _threads)
+		t->start();
+}
+
+void Dinner::receivedEvent(PhilosopherEvent e)
+{
+	switch (e.event)
+	{
+	case Eating:
+		emit philosopherStatus(e.number, PhilosopherStatus::Eat);
+		break;
+	case Thinking:
+		emit philosopherStatus(e.number, PhilosopherStatus::Think);
+		break;
+	case Waiting:
+		emit philosopherStatus(e.number, PhilosopherStatus::Wait);
+		break;
+	case LeftForkTaken:
+		emit forkStatus(e.number, ForkStatus::Occupied);
+		break;
+	case RightForkTaken:
+		emit forkStatus((e.number + 1) % 5 , ForkStatus::Occupied);
+		break;
+	case LeftForkReleased:
+		emit forkStatus(e.number, ForkStatus::Available);
+		break;
+	case RightForkReleased:
+		emit forkStatus((e.number + 1) % 5, ForkStatus::Available);
+		break;
+	}
 }
 
 void Dinner::start()
 {
-	for(QThread* t : _threads)
-		t->start();
+	for (Philosopher* ph : _philosophers)
+		QMetaObject::invokeMethod(ph, "start", Qt::QueuedConnection);
+}
+
+dph::Dinner::~Dinner()
+{
+	stop();
+	for (QThread* t : _threads)
+	{
+		t->quit();
+		t->wait();
+	}	
 }
 
 void Dinner::stop()

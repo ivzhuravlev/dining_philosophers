@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "logwidget.h"
+#include "dphCore\dinner.h"
 
 #include <QApplication>
 #include <QScreen>
@@ -18,6 +19,11 @@ MainWindow::MainWindow(QWidget* parent) :
 
 	setCentralWidget(_logWidget);
 	setGeometry(findAvailableWindowGeometry());
+
+	_dinner = new Dinner(5, this);
+	connect(_startDinnerAct, SIGNAL(triggered()), _dinner, SLOT(start()));
+	connect(_stopDinnerAct, SIGNAL(triggered()), _dinner, SLOT(stop()));
+	connect(_dinner, &Dinner::philosopherStatus, _logWidget, &LogWidget::philStatusChanged);
 }
 
 void MainWindow::createActions()
@@ -25,15 +31,15 @@ void MainWindow::createActions()
 	QMenu* actionMenu = menuBar()->addMenu(tr("&Actions"));
 	QToolBar* actionBar = addToolBar(tr("Actions"));
 
-	QAction* startDinnerAct = new QAction(QIcon(":/resources/start.png"), tr("&Start Dinner"), this);
-	startDinnerAct->setToolTip(tr("Let the dinner begins"));
-	actionMenu->addAction(startDinnerAct);
-	actionBar->addAction(startDinnerAct);
+	_startDinnerAct = new QAction(QIcon(":/resources/start.png"), tr("&Start Dinner"), this);
+	_startDinnerAct->setToolTip(tr("Let the dinner begins"));
+	actionMenu->addAction(_startDinnerAct);
+	actionBar->addAction(_startDinnerAct);
 
-	QAction* stopDinnerAct = new QAction(QIcon(":/resources/stop.png"), tr("Sto&p Dinner"), this);
-	stopDinnerAct->setToolTip(tr("Enough of this nothingness"));
-	actionMenu->addAction(stopDinnerAct);
-	actionBar->addAction(stopDinnerAct);
+	_stopDinnerAct = new QAction(QIcon(":/resources/stop.png"), tr("Sto&p Dinner"), this);
+	_stopDinnerAct->setToolTip(tr("Enough of this nothingness"));
+	actionMenu->addAction(_stopDinnerAct);
+	actionBar->addAction(_stopDinnerAct);
 
 	actionMenu->addSeparator();
 

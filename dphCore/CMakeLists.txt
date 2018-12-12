@@ -17,10 +17,11 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Core CONFIG REQUIRED)
 
 # Set source files to build
-set(H_FILES "${COMMON_INCLUDE_DIRECTORY}/${PROJECT_NAME}/dinner.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${PROJECT_NAME}/status.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${PROJECT_NAME}/philparameters.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${PROJECT_NAME}/philosopher.h")
+set(H_FILES "${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinner.h"
+			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/status.h"
+			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philparameters.h"
+			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philosopher.h"
+			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philevent.h")
 			
 set(CPP_FILES "src/dinner.cpp"
 			  "src/philosopher.cpp")
@@ -36,10 +37,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
 
 # Set build target
-add_library(${PROJECT_NAME} STATIC ${H_FILES} ${CPP_FILES})
+add_library(${dphCore_PROJECT} STATIC ${H_FILES} ${CPP_FILES})
 
 # Set dependencies to link
-target_link_libraries(${PROJECT_NAME} Qt5::Core)
+target_link_libraries(${dphCore_PROJECT} Qt5::Core)
 
 # Set unit test directory
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/test")

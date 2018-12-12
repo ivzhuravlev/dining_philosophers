@@ -12,7 +12,9 @@ Philosopher::Philosopher(QMutex* leftFork, QMutex* rightFork, QSemaphore* footMa
 	_footMan(footMan),
 	_stopFlag(false),
 	_params(params)
-	{}
+	{
+		qRegisterMetaType<PhilosopherEvent>("PhilosopherEvent");
+	}
 	
 void Philosopher::start()
 {
@@ -42,10 +44,10 @@ void Philosopher::getForks()
 	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, Waiting));
 	
 	_leftFork->lock();
-	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, LeftForkTaken);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, LeftForkTaken));
 	
 	_rightFork->lock();
-	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, RightForkTaken);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, RightForkTaken));
 }
 
 void Philosopher::eat()
@@ -57,10 +59,10 @@ void Philosopher::eat()
 void Philosopher::putForks()
 {
 	_leftFork->unlock();
-	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, LeftForkReleased);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, LeftForkReleased));
 	
 	_rightFork->unlock();
-	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, RightForkReleased);
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, RightForkReleased));
 }
 
 void Philosopher::think()

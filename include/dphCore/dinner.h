@@ -21,7 +21,9 @@ namespace dph
 		
 	public:
 		Dinner(int philNum = 5, QObject* parent = nullptr);
+		~Dinner();
 		
+	public slots:
 		void start();
 		void stop();
 			

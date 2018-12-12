@@ -15,6 +15,8 @@ namespace dph
 	
 	struct PhilosopherEvent
 	{
+		PhilosopherEvent() = default;
+
 		PhilosopherEvent(int num, Event e):
 		number(num),
 		event(e)
@@ -22,6 +24,6 @@ namespace dph
 		
 		int number;
 		Event event;
-	}
+	};
 }
 		

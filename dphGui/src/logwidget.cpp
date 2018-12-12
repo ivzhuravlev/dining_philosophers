@@ -26,5 +26,5 @@ void LogWidget::philStatusChanged(int p, PhilosopherStatus pStat)
 		break;
 	}
 
-	append(QString(tr("Philosopher %1 %2\n")).arg(tr("#")).arg(status));
+	append(QString(tr("Philosopher %1%2 %3")).arg(tr("#"), QString::number(p), status));
 }
