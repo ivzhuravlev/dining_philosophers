@@ -43,6 +43,8 @@ void Philosopher::getForks()
 {
 	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, Waiting));
 	
+	_footMan->acquire();
+
 	_leftFork->lock();
 	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, LeftForkTaken));
 	
@@ -63,6 +65,8 @@ void Philosopher::putForks()
 	
 	_rightFork->unlock();
 	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, RightForkReleased));
+
+	_footMan->release();
 }
 
 void Philosopher::think()
