@@ -10,15 +10,18 @@
 #include <QMenu>
 #include <QToolBar>
 #include <QIcon>
+#include <QSplitter>
+#include <QGraphicsView>
 
 MainWindow::MainWindow(QWidget* parent) :
-	QMainWindow(parent)
+	QMainWindow(parent),
+	_availGeometry(findAvailableWindowGeometry())
 {
 	createWidgets();
 	createActions();
 
-	setCentralWidget(_logWidget);
-	setGeometry(findAvailableWindowGeometry());
+	setCentralWidget(_splitter);
+	setGeometry(_availGeometry);
 
 	_dinner = new Dinner(5, this);
 	connect(_startDinnerAct, SIGNAL(triggered()), _dinner, SLOT(start()));
@@ -51,13 +54,20 @@ void MainWindow::createActions()
 
 void MainWindow::createWidgets()
 {
+	_splitter = new QSplitter(Qt::Horizontal, this);
+	_dinnerView = new QGraphicsView(this);
 	_logWidget = new LogWidget(this);
+
+	_splitter->addWidget(_dinnerView);
+	_splitter->addWidget(_logWidget);
+	_splitter->setSizes({static_cast<int>(_availGeometry.width() * 0.7),
+						 static_cast<int>(_availGeometry.width() * 0.3)});
 }
 
 QRect MainWindow::findAvailableWindowGeometry()
 {
 	const QRect& avGeom = qApp->primaryScreen()->availableGeometry();
-	const QSize size(avGeom.height() * 0.33, avGeom.height() * 0.5);
+	const QSize size(avGeom.width() * 0.4, avGeom.height() * 0.5);
 
 	return QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, size, avGeom);
 }

@@ -10,6 +10,8 @@ using dph::Dinner;
 class QRect;
 class LogWidget;
 class QAction;
+class QGraphicsView;
+class QSplitter;
 
 class MainWindow : public QMainWindow
 {
@@ -22,8 +24,11 @@ private:
 	void createWidgets();
 	QRect findAvailableWindowGeometry();
 
+	QSplitter*		_splitter;
+	QGraphicsView*	_dinnerView;
 	LogWidget*		_logWidget;
-	Dinner*	_dinner;
+	Dinner*			_dinner;
 	QAction*		_startDinnerAct;
 	QAction*		_stopDinnerAct;
+	QRect			_availGeometry;
 };
