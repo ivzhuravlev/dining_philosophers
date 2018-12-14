@@ -7,14 +7,10 @@ project(${dphCore_PROJECT})
 # Set project name to the parent scope
 set(dphCore_PROJECT ${dphCore_PROJECT} PARENT_SCOPE)
 
-#message("Current source dir " ${CMAKE_CURRENT_SOURCE_DIR})
-#message("Bin dir " ${CMAKE_BINARY_DIR})
-#message("Autogen dir " ${AUTOGEN_BUILD_DIR})
-
 set(CMAKE_AUTOMOC ON)
 
 # Find necessary Qt packages
-find_package(Qt5Core CONFIG REQUIRED)
+find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
 
 # Set source files to build
 set(H_FILES "${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinner.h"

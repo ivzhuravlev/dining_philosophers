@@ -12,9 +12,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 # Find necessary Qt packages
-find_package(Qt5Core CONFIG REQUIRED)
-find_package(Qt5Gui CONFIG REQUIRED)
-find_package(Qt5Widgets CONFIG REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Widgets CONFIG REQUIRED)
 
 # Set source files to build
 set(H_FILES src/mainwindow.h
@@ -44,13 +42,13 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
 
 # Set build target
-add_executable(${PROJECT_NAME} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES})
+add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES})
 
 # Set dependencies to link
-target_link_libraries(${PROJECT_NAME} ${dphCore_PROJECT} Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(${dphGui_PROJECT} ${dphCore_PROJECT} Qt5::Core Qt5::Gui Qt5::Widgets)
 
 # Copy qt .dll's to .exe file
-add_custom_command(TARGET ${PROJECT_NAME} COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Core>
+add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Core>
 																						$<TARGET_FILE:Qt5::Gui>
 																						$<TARGET_FILE:Qt5::Widgets>
-																						$<TARGET_FILE_DIR:${PROJECT_NAME}>)
+																						$<TARGET_FILE_DIR:${dphGui_PROJECT}>)
