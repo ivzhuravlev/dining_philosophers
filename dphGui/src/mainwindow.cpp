@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget* parent) :
 
 	setCentralWidget(_splitter);
 	setGeometry(_availGeometry);
+	setWindowIcon(QIcon(":/resources/philosophy.png"));
 
 	_dinner = new Dinner(5, this);
 	connect(_startDinnerAct, SIGNAL(triggered()), _dinner, SLOT(start()));
