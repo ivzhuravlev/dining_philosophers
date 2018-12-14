@@ -33,6 +33,7 @@ void MainWindow::createActions()
 {
 	QMenu* actionMenu = menuBar()->addMenu(tr("&Actions"));
 	QToolBar* actionBar = addToolBar(tr("Actions"));
+	actionBar->setIconSize(QSize(24, 24));
 
 	_startDinnerAct = new QAction(QIcon(":/resources/start.png"), tr("&Start Dinner"), this);
 	_startDinnerAct->setToolTip(tr("Let the dinner begins"));
