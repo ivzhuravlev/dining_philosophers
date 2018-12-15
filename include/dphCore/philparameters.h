@@ -8,7 +8,7 @@ namespace dph
 
 	struct PhilParameters
 	{
-		PhilParameters(int ord, std::chrono::milliseconds eatDur = 1000ms, std::chrono::milliseconds thDur = 1200ms) :
+		PhilParameters(int ord, std::chrono::milliseconds eatDur = 300ms, std::chrono::milliseconds thDur = 800ms) :
 			ordinalNumber(ord),
 			eatDuration(eatDur),
 			thinkDuration(thDur)
