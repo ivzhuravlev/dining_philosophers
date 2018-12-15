@@ -36,6 +36,7 @@ void Philosopher::process()
 		eat();
 		putForks();
 	}
+	emit sendEvent(PhilosopherEvent(_params.ordinalNumber, Finished));
 	emit finished();
 }
 

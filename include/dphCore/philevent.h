@@ -10,7 +10,8 @@ namespace dph
 			LeftForkTaken,
 			RightForkTaken,
 			LeftForkReleased,
-			RightForkReleased
+			RightForkReleased,
+			Finished
 		};
 	
 	struct PhilosopherEvent

@@ -24,7 +24,7 @@ void Dinner::init()
 	
 	for(int i = 0; i < _philNum; ++i)
 	{
-		PhilParameters param(i);
+		PhilParameters param(i, std::chrono::milliseconds(700), std::chrono::milliseconds(400));
 		Philosopher* phil = new Philosopher(leftFork(i), rightFork(i), _footMan.get(), param);
 		QThread* thread = new QThread(this);
 		
@@ -52,6 +52,9 @@ void Dinner::receivedEvent(PhilosopherEvent e)
 		break;
 	case Waiting:
 		emit philosopherStatus(e.number, PhilosopherStatus::Wait);
+		break;
+	case Finished:
+		emit philosopherStatus(e.number, PhilosopherStatus::Finish);
 		break;
 	case LeftForkTaken:
 		emit forkStatus(e.number, ForkStatus::Occupied);

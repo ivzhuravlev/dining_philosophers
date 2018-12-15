@@ -22,6 +22,9 @@ void LogWidget::philStatusChanged(int p, PhilosopherStatus pStat)
 	case PhilosopherStatus::Wait:
 		status = tr("waits");
 		break;
+	case PhilosopherStatus::Finish:
+		status = tr("finished");
+		break;
 	default:
 		break;
 	}

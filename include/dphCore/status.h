@@ -6,7 +6,8 @@ namespace dph
 	{
 		Eat = 0,
 		Think,
-		Wait
+		Wait,
+		Finish
 	};
 	
 	enum class ForkStatus
