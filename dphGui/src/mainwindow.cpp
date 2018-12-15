@@ -42,7 +42,7 @@ void MainWindow::createActions()
 	actionBar->addAction(_startDinnerAct);
 
 	_stopDinnerAct = new QAction(QIcon(":/resources/stop.png"), tr("Sto&p Dinner"), this);
-	_stopDinnerAct->setToolTip(tr("Enough of this nothingness"));
+	_stopDinnerAct->setToolTip(tr("Enough of this nonsense"));
 	actionMenu->addAction(_stopDinnerAct);
 	actionBar->addAction(_stopDinnerAct);
 
