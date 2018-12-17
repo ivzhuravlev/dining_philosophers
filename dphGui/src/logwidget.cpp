@@ -1,4 +1,5 @@
 #include "logwidget.h"
+#include <QTime>
 
 using namespace dph;
 
@@ -29,5 +30,13 @@ void LogWidget::philStatusChanged(int p, PhilosopherStatus pStat)
 		break;
 	}
 
-	append(QString(tr("Philosopher %1%2 %3")).arg(tr("#"), QString::number(p), status));
+	append(QString(tr("%1 - Philosopher %2%3 %4")).arg(currentTime(),
+													tr("#"),
+													QString::number(p),
+													status));
+}
+
+QString LogWidget::currentTime()
+{
+	return QTime::currentTime().toString("hh:mm:ss");
 }

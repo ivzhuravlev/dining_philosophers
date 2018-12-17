@@ -11,4 +11,7 @@ public:
 
 public slots:
 	void philStatusChanged(int p, dph::PhilosopherStatus pStat);
+
+private:
+	QString currentTime();
 };
