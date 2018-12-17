@@ -9,6 +9,7 @@ using dph::Dinner;
 
 class QRect;
 class LogWidget;
+class DinnerSceneManager;
 class QAction;
 class QGraphicsView;
 class QSplitter;
@@ -27,6 +28,7 @@ private:
 	QSplitter*		_splitter;
 	QGraphicsView*	_dinnerView;
 	LogWidget*		_logWidget;
+	DinnerSceneManager* _sceneManager;
 	Dinner*			_dinner;
 	QAction*		_startDinnerAct;
 	QAction*		_stopDinnerAct;

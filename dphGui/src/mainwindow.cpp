@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "logwidget.h"
-#include "dphCore\dinner.h"
+#include "dinnerscenemanager.h"
+#include "dphCore/dinner.h"
 
 #include <QApplication>
 #include <QScreen>
@@ -12,6 +13,7 @@
 #include <QIcon>
 #include <QSplitter>
 #include <QGraphicsView>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget* parent) :
 	QMainWindow(parent),
@@ -28,6 +30,12 @@ MainWindow::MainWindow(QWidget* parent) :
 	connect(_startDinnerAct, SIGNAL(triggered()), _dinner, SLOT(start()));
 	connect(_stopDinnerAct, SIGNAL(triggered()), _dinner, SLOT(stop()));
 	connect(_dinner, &Dinner::philosopherStatus, _logWidget, &LogWidget::philStatusChanged);
+
+	//Debug
+	connect(_startDinnerAct, &QAction::triggered, [this]()
+	{
+		qDebug() << _dinnerView->size();
+	});
 }
 
 void MainWindow::createActions()
@@ -57,7 +65,14 @@ void MainWindow::createActions()
 void MainWindow::createWidgets()
 {
 	_splitter = new QSplitter(Qt::Horizontal, this);
+
 	_dinnerView = new QGraphicsView(this);
+	_dinnerView->setDragMode(QGraphicsView::NoDrag);
+	QSize size = _dinnerView->size();
+
+	_sceneManager = new DinnerSceneManager(/*QRectF(0, 0, _dinnerView->size().width(), _dinnerView->size().height()),*/ 5, this);
+	_dinnerView->setScene(_sceneManager->scene());
+
 	_logWidget = new LogWidget(this);
 
 	_splitter->addWidget(_dinnerView);
