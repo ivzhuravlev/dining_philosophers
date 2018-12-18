@@ -24,7 +24,7 @@ void Dinner::init()
 	
 	for(int i = 0; i < _philNum; ++i)
 	{
-		PhilParameters param(i, std::chrono::milliseconds(700), std::chrono::milliseconds(400));
+		PhilParameters param(i, std::chrono::milliseconds(400), std::chrono::milliseconds(400));
 		Philosopher* phil = new Philosopher(leftFork(i), rightFork(i), _footMan.get(), param);
 		QThread* thread = new QThread(this);
 		

@@ -30,12 +30,14 @@ MainWindow::MainWindow(QWidget* parent) :
 	connect(_startDinnerAct, SIGNAL(triggered()), _dinner, SLOT(start()));
 	connect(_stopDinnerAct, SIGNAL(triggered()), _dinner, SLOT(stop()));
 	connect(_dinner, &Dinner::philosopherStatus, _logWidget, &LogWidget::philStatusChanged);
+	connect(_dinner, &Dinner::philosopherStatus, _sceneManager, &DinnerSceneManager::philStatusChanged);
+	connect(_dinner, &Dinner::forkStatus, _sceneManager, &DinnerSceneManager::forkStatusChanged);
 
 	//Debug
-	connect(_startDinnerAct, &QAction::triggered, [this]()
-	{
-		qDebug() << _dinnerView->size();
-	});
+	//connect(_startDinnerAct, &QAction::triggered, [this]()
+	//{
+	//	qDebug() << _dinnerView->size();
+	//});
 }
 
 void MainWindow::createActions()
@@ -68,9 +70,10 @@ void MainWindow::createWidgets()
 
 	_dinnerView = new QGraphicsView(this);
 	_dinnerView->setDragMode(QGraphicsView::NoDrag);
-	QSize size = _dinnerView->size();
+	_dinnerView->setAlignment(Qt::AlignCenter);
+	_dinnerView->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
-	_sceneManager = new DinnerSceneManager(/*QRectF(0, 0, _dinnerView->size().width(), _dinnerView->size().height()),*/ 5, this);
+	_sceneManager = new DinnerSceneManager(5, this);
 	_dinnerView->setScene(_sceneManager->scene());
 
 	_logWidget = new LogWidget(this);
