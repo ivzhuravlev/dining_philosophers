@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "logwidget.h"
 #include "dinnerscenemanager.h"
+#include "settingsserializer.h"
 #include "dphCore/dinner.h"
 
 #include <QApplication>
@@ -13,31 +14,40 @@
 #include <QIcon>
 #include <QSplitter>
 #include <QGraphicsView>
-#include <QDebug>
 
 MainWindow::MainWindow(QWidget* parent) :
 	QMainWindow(parent),
 	_availGeometry(findAvailableWindowGeometry())
 {
+	_settingsSerializer = new SettingsSerializer(qApp->organizationName(), qApp->applicationName(), this);
+
+	loadSettings();
 	createWidgets();
 	createActions();
+	createDinner();
 
 	setCentralWidget(_splitter);
 	setGeometry(_availGeometry);
 	setWindowIcon(QIcon(":/resources/philosophy.png"));
+}
 
-	_dinner = new Dinner(_dinnerSettings, this);
-	connect(_startDinnerAct, SIGNAL(triggered()), _dinner, SLOT(start()));
-	connect(_stopDinnerAct, SIGNAL(triggered()), _dinner, SLOT(stop()));
-	connect(_dinner, &Dinner::philosopherStatus, _logWidget, &LogWidget::philStatusChanged);
-	connect(_dinner, &Dinner::philosopherStatus, _sceneManager, &DinnerSceneManager::philStatusChanged);
-	connect(_dinner, &Dinner::forkStatus, _sceneManager, &DinnerSceneManager::forkStatusChanged);
+void MainWindow::closeEvent(QCloseEvent * override)
+{
+	saveSettings();
+}
 
-	//Debug
-	//connect(_startDinnerAct, &QAction::triggered, [this]()
-	//{
-	//	qDebug() << _dinnerView->size();
-	//});
+void MainWindow::loadSettings()
+{
+	_dinnerSettings = _settingsSerializer->loadDinnerSettings();
+	_sceneSettings = _settingsSerializer->loadSceneSettings();
+	_visualSettings = _settingsSerializer->loadVisualSettings();
+}
+
+void MainWindow::saveSettings()
+{
+	_settingsSerializer->saveDinnerSettings(_dinnerSettings);
+	_settingsSerializer->saveSceneSettings(_sceneSettings);
+	_settingsSerializer->saveVisualSettings(_visualSettings);
 }
 
 void MainWindow::createActions()
@@ -83,6 +93,16 @@ void MainWindow::createWidgets()
 	_splitter->addWidget(_logWidget);
 	_splitter->setSizes({static_cast<int>(_availGeometry.width() * 0.7),
 						 static_cast<int>(_availGeometry.width() * 0.3)});
+}
+
+void MainWindow::createDinner()
+{
+	_dinner = new Dinner(_dinnerSettings, this);
+	connect(_startDinnerAct, SIGNAL(triggered()), _dinner, SLOT(start()));
+	connect(_stopDinnerAct, SIGNAL(triggered()), _dinner, SLOT(stop()));
+	connect(_dinner, &Dinner::philosopherStatus, _logWidget, &LogWidget::philStatusChanged);
+	connect(_dinner, &Dinner::philosopherStatus, _sceneManager, &DinnerSceneManager::philStatusChanged);
+	connect(_dinner, &Dinner::forkStatus, _sceneManager, &DinnerSceneManager::forkStatusChanged);
 }
 
 QRect MainWindow::findAvailableWindowGeometry()

@@ -18,12 +18,14 @@ find_package(Qt5 COMPONENTS Core Gui Widgets CONFIG REQUIRED)
 set(H_FILES src/mainwindow.h
 			src/logwidget.h
 			src/dinnerscenemanager.h
-			src/settings.h)
+			src/settings.h
+			src/settingsserializer.h)
 
 set(CPP_FILES	src/mainwindow.cpp
 				src/main.cpp
 				src/logwidget.cpp
-				src/dinnerscenemanager.cpp)
+				src/dinnerscenemanager.cpp
+				src/settingsserializer.cpp)
 
 set(QRC_FILES	src/resources.qrc)
 

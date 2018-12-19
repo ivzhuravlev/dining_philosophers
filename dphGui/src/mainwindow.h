@@ -10,6 +10,7 @@ namespace dph
 using dph::Dinner;
 using dph::DinnerSettings;
 
+class SettingsSerializer;
 class LogWidget;
 class DinnerSceneManager;
 class QAction;
@@ -22,9 +23,15 @@ class MainWindow : public QMainWindow
 public:
 	MainWindow(QWidget* parent = nullptr);
 
+protected:
+	void closeEvent(QCloseEvent* override);
+
 private:
+	void loadSettings();
+	void saveSettings();
 	void createActions();
 	void createWidgets();
+	void createDinner();
 	QRect findAvailableWindowGeometry();
 
 	QSplitter*		_splitter;
@@ -38,4 +45,5 @@ private:
 	DinnerSettings	_dinnerSettings;
 	SceneSettings	_sceneSettings;
 	VisualSettings	_visualSettings;
+	SettingsSerializer* _settingsSerializer;
 };
