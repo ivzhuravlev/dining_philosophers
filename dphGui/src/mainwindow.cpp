@@ -2,6 +2,7 @@
 #include "logwidget.h"
 #include "dinnerscenemanager.h"
 #include "settingsserializer.h"
+#include "settingsdialog.h"
 #include "dphCore/dinner.h"
 
 #include <QApplication>
@@ -65,6 +66,16 @@ void MainWindow::createActions()
 	_stopDinnerAct->setToolTip(tr("Enough of this nonsense"));
 	actionMenu->addAction(_stopDinnerAct);
 	actionBar->addAction(_stopDinnerAct);
+
+	_settingsAct = new QAction(QIcon(":/resources/settings.png"), tr("Se&ttings"), this);
+	_settingsAct->setToolTip(tr("Settings"));
+	actionMenu->addAction(_settingsAct);
+	actionBar->addAction(_settingsAct);
+	connect(_settingsAct, &QAction::triggered, [this]
+	{
+		SettingsDialog dialog;
+		dialog.exec();
+	});
 
 	actionMenu->addSeparator();
 

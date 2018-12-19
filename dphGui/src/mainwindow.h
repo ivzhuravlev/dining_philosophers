@@ -32,18 +32,24 @@ private:
 	void createActions();
 	void createWidgets();
 	void createDinner();
+
 	QRect findAvailableWindowGeometry();
+
+	QRect _availGeometry;
 
 	QSplitter*		_splitter;
 	QGraphicsView*	_dinnerView;
 	LogWidget*		_logWidget;
+
+	Dinner*				_dinner;
 	DinnerSceneManager* _sceneManager;
-	Dinner*			_dinner;
-	QAction*		_startDinnerAct;
-	QAction*		_stopDinnerAct;
-	QRect			_availGeometry;
-	DinnerSettings	_dinnerSettings;
-	SceneSettings	_sceneSettings;
-	VisualSettings	_visualSettings;
+	
+	QAction*	_startDinnerAct;
+	QAction*	_stopDinnerAct;
+	QAction*	_settingsAct;
+	
+	DinnerSettings		_dinnerSettings;
+	SceneSettings		_sceneSettings;
+	VisualSettings		_visualSettings;
 	SettingsSerializer* _settingsSerializer;
 };

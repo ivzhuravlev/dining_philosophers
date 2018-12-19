@@ -2,8 +2,11 @@
     <qresource prefix="/">
         <file>resources/start.png</file>
         <file>resources/stop.png</file>
-        <file>resources/settings.png</file>
         <file>resources/exit.png</file>
         <file>resources/philosophy.png</file>
+        <file>resources/geometry.png</file>
+        <file>resources/palette.png</file>
+        <file>resources/spaghetti.png</file>
+        <file>resources/settings.png</file>
     </qresource>
 </RCC>
