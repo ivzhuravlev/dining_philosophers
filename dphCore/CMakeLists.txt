@@ -17,7 +17,8 @@ set(H_FILES "${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinner.h"
 			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/status.h"
 			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philparameters.h"
 			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philosopher.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philevent.h")
+			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philevent.h"
+			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinnersettings.h")
 			
 set(CPP_FILES "src/dinner.cpp"
 			  "src/philosopher.cpp")

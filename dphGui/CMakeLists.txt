@@ -17,7 +17,8 @@ find_package(Qt5 COMPONENTS Core Gui Widgets CONFIG REQUIRED)
 # Set source files to build
 set(H_FILES src/mainwindow.h
 			src/logwidget.h
-			src/dinnerscenemanager.h)
+			src/dinnerscenemanager.h
+			src/settings.h)
 
 set(CPP_FILES	src/mainwindow.cpp
 				src/main.cpp
