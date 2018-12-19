@@ -28,9 +28,8 @@ private:
 
 	int _philNum;
 	QGraphicsScene* _scene;
-	QVector<QGraphicsEllipseItem*> _philosophers;
-	QVector<QGraphicsRectItem*> _forks;
+	QVector<QGraphicsEllipseItem*>	_philosophers;
+	QVector<QGraphicsRectItem*>		_forks;
 	QMap<PhilosopherStatus, QColor> _philColorMap;
 	QMap<ForkStatus, QColor>		_forkColorMap;
-
 };
