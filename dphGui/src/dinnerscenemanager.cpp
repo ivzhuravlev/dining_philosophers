@@ -7,42 +7,46 @@
 
 using namespace dph;
 
-DinnerSceneManager::DinnerSceneManager(int philNum, QObject* parent) :
+DinnerSceneManager::DinnerSceneManager(int philNum,
+										const SceneSettings& sceneSet,
+										const VisualSettings& visSet,
+										QObject* parent) :
 	QObject(parent),
-	_philNum(philNum)
+	_philNum(philNum),
+	_sceneSettings(sceneSet),
+	_visualSettings(visSet)
 {
 	_scene = new QGraphicsScene(this);
 
-	setColorMaps();
-
 	QPen pen(Qt::black);
-	QBrush pBrush(_philColorMap[PhilosopherStatus::Finish]);
-	QBrush fBrush(_forkColorMap[ForkStatus::Available]);
+	QBrush pBrush(_visualSettings.philColors[PhilosopherStatus::Finish]);
+	QBrush fBrush(_visualSettings.forkColors[ForkStatus::Available]);
 
 	const int xC = 0;
 	const int yC = 0;
-	const int rEllipse = 60;
-	const int fW = 10;
-	const int fH = 50;
-	const int R = 150;
+	const int r		= _sceneSettings.philRadius;
+	const int R		= _sceneSettings.tableRadius;
+	const int fW	= _sceneSettings.forkWidth;
+	const int fH	= _sceneSettings.forkHeight;
 	const double phi0 = -M_PI_2;
-	for (int i = 0; i < philNum; ++i)
+
+	for (int i = 0; i < _philNum; ++i)
 	{
-		double phi1 = 2 * M_PI * i / philNum;
+		double phi1 = 2 * M_PI * i / _philNum;
 		QPoint ellPoint(xC + R * qCos(phi0 + phi1), yC + R * qSin(phi0 + phi1));
-		QPoint ellOffset(-rEllipse / 2, -rEllipse / 2);
-		QSize  ellSize(rEllipse, rEllipse);
+		QPoint ellOffset(-r / 2, -r / 2);
+		QSize  ellSize(r, r);
 
 		auto ellipse =  _scene->addEllipse(QRectF(ellPoint + ellOffset, ellSize), pen, pBrush);
 		_philosophers.append(ellipse);
 
 		QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(i), ellipse);
-		text->setFont(QFont("Times", 14, QFont::DemiBold));
+		text->setFont(_visualSettings.font);
 		QRectF textRect = text->boundingRect();
 		QPointF textOffset(-textRect.width() / 2, -textRect.height() / 2);
 		text->setPos(ellPoint + textOffset);
 
-		double phi2 = (2 * i + 1) * M_PI / philNum;
+		double phi2 = (2 * i + 1) * M_PI / _philNum;
 		QPoint forkPoint(xC + R * qCos(phi0 + phi2), yC + R * qSin(phi0 + phi2));
 		QPoint forkOffset(-fW / 2, -fH / 2);
 		QSize  forkSize(fW, fH);
@@ -64,7 +68,7 @@ void DinnerSceneManager::philStatusChanged(int p, PhilosopherStatus pStat)
 	if (p >= _philNum)
 		return;
 	
-	_philosophers[p]->setBrush(QBrush(_philColorMap[pStat]));
+	_philosophers[p]->setBrush(QBrush(_visualSettings.philColors[pStat]));
 }
 
 void DinnerSceneManager::forkStatusChanged(int p, ForkStatus fStat)
@@ -72,16 +76,5 @@ void DinnerSceneManager::forkStatusChanged(int p, ForkStatus fStat)
 	if (p >= _philNum)
 		return;
 
-	_forks[p]->setBrush(QBrush(_forkColorMap[fStat]));
-}
-
-void DinnerSceneManager::setColorMaps()
-{
-	_philColorMap[PhilosopherStatus::Think] = QColor(qRgb(51, 51, 255));	//blue
-	_philColorMap[PhilosopherStatus::Eat] = QColor(qRgb(0, 153, 51));		//green
-	_philColorMap[PhilosopherStatus::Wait] = QColor(qRgb(204, 0, 0));		//red
-	_philColorMap[PhilosopherStatus::Finish] = QColor(qRgb(255, 163, 26));	//orange
-
-	_forkColorMap[ForkStatus::Available] = QColor(qRgb(0, 153, 51));	//green
-	_forkColorMap[ForkStatus::Occupied] = QColor(qRgb(204, 0, 0));		//red
+	_forks[p]->setBrush(QBrush(_visualSettings.forkColors[fStat]));
 }

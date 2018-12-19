@@ -2,6 +2,7 @@
 
 #include "status.h"
 #include "philevent.h"
+#include "dinnersettings.h"
 
 #include <QObject>
 #include <QVector>
@@ -20,7 +21,7 @@ namespace dph
 		Q_OBJECT
 		
 	public:
-		Dinner(int philNum = 5, QObject* parent = nullptr);
+		Dinner(const DinnerSettings& settings, QObject* parent = nullptr);
 		~Dinner();
 		
 	public slots:
@@ -39,7 +40,7 @@ namespace dph
 		QMutex* leftFork(int phil);
 		QMutex* rightFork(int phil);
 		
-		const int _philNum;
+		DinnerSettings						_settings;
 		QVector<QThread*>					_threads;
 		QVector<Philosopher*>				_philosophers;
 		std::vector<std::unique_ptr<QMutex>>	_forks;

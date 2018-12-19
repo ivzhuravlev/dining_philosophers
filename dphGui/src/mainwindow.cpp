@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget* parent) :
 	setGeometry(_availGeometry);
 	setWindowIcon(QIcon(":/resources/philosophy.png"));
 
-	_dinner = new Dinner(5, this);
+	_dinner = new Dinner(_dinnerSettings, this);
 	connect(_startDinnerAct, SIGNAL(triggered()), _dinner, SLOT(start()));
 	connect(_stopDinnerAct, SIGNAL(triggered()), _dinner, SLOT(stop()));
 	connect(_dinner, &Dinner::philosopherStatus, _logWidget, &LogWidget::philStatusChanged);
@@ -73,7 +73,8 @@ void MainWindow::createWidgets()
 	_dinnerView->setAlignment(Qt::AlignCenter);
 	_dinnerView->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
-	_sceneManager = new DinnerSceneManager(5, this);
+	_sceneManager = new DinnerSceneManager(_dinnerSettings.philNum, _sceneSettings,
+											_visualSettings, this);
 	_dinnerView->setScene(_sceneManager->scene());
 
 	_logWidget = new LogWidget(this);

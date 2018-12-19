@@ -4,9 +4,9 @@
 
 using namespace dph;
 
-Dinner::Dinner(int philNum, QObject* parent) :
+Dinner::Dinner(const DinnerSettings& settings, QObject* parent) :
 	QObject(parent),
-	_philNum(philNum)
+	_settings(settings)
 	{
 		qRegisterMetaType<PhilosopherStatus>("PhilosopherStatus");
 		qRegisterMetaType<ForkStatus>("ForkStatus");
@@ -15,16 +15,17 @@ Dinner::Dinner(int philNum, QObject* parent) :
 	
 void Dinner::init()
 {
-	_footMan = std::make_unique<QSemaphore>(_philNum - 1);
+	const int philNum = _settings.philNum;
+	_footMan = std::make_unique<QSemaphore>(philNum - 1);
 	
-	for(int i = 0; i < _philNum; ++i)
+	for(int i = 0; i < philNum; ++i)
 	{
 		_forks.push_back(std::make_unique<QMutex>());
 	}
 	
-	for(int i = 0; i < _philNum; ++i)
+	for(int i = 0; i < philNum; ++i)
 	{
-		PhilParameters param(i, std::chrono::milliseconds(400), std::chrono::milliseconds(400));
+		PhilParameters param(i, _settings.eatDur, _settings.thinkDur);
 		Philosopher* phil = new Philosopher(leftFork(i), rightFork(i), _footMan.get(), param);
 		QThread* thread = new QThread(this);
 		

@@ -1,5 +1,6 @@
 #pragma once
 #include "dphCore/status.h"
+#include "settings.h"
 
 #include <QObject>
 #include <QVector>
@@ -16,7 +17,10 @@ class DinnerSceneManager : public QObject
 {
 	Q_OBJECT
 public:
-	DinnerSceneManager(int philNum = 5, QObject* parent = nullptr);
+	DinnerSceneManager(int philNum,
+						const SceneSettings& sceneSet,
+						const VisualSettings& visSet,
+						QObject* parent = nullptr);
 	QGraphicsScene* scene() const;
 
 public slots:
@@ -24,12 +28,10 @@ public slots:
 	void forkStatusChanged(int p, ForkStatus fStat);
 
 private:
-	void setColorMaps();
-
 	int _philNum;
 	QGraphicsScene* _scene;
 	QVector<QGraphicsEllipseItem*>	_philosophers;
 	QVector<QGraphicsRectItem*>		_forks;
-	QMap<PhilosopherStatus, QColor> _philColorMap;
-	QMap<ForkStatus, QColor>		_forkColorMap;
+	SceneSettings	_sceneSettings;
+	VisualSettings	_visualSettings;
 };

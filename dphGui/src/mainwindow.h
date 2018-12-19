@@ -1,4 +1,6 @@
 #include <QMainWindow>
+#include "settings.h"
+#include "dphCore/dinnersettings.h"
 
 namespace dph
 {
@@ -6,8 +8,8 @@ namespace dph
 }
 
 using dph::Dinner;
+using dph::DinnerSettings;
 
-class QRect;
 class LogWidget;
 class DinnerSceneManager;
 class QAction;
@@ -33,4 +35,7 @@ private:
 	QAction*		_startDinnerAct;
 	QAction*		_stopDinnerAct;
 	QRect			_availGeometry;
+	DinnerSettings	_dinnerSettings;
+	SceneSettings	_sceneSettings;
+	VisualSettings	_visualSettings;
 };
