@@ -3,16 +3,20 @@
 #include <QListWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QDebug>
 
 SettingsDialog::SettingsDialog()
 {
+	//QWidget* widget = new QWidget(this);
 	_listWidget = new QListWidget(this);
 	_listWidget->setViewMode(QListView::IconMode);
 	_listWidget->setIconSize(QSize(48, 48));
 	_listWidget->setMaximumHeight(96);
 	_listWidget->setMovement(QListView::Static);
 	_listWidget->setFlow(QListView::LeftToRight);
-	_listWidget->setSpacing(12);
+	_listWidget->setSpacing(10);
+	_listWidget->setResizeMode(QListView::Adjust);
+	_listWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
 
 	QListWidgetItem *dinnerBtn = new QListWidgetItem(_listWidget);
 	dinnerBtn->setIcon(QIcon(":/resources/spaghetti.png"));
@@ -33,6 +37,8 @@ SettingsDialog::SettingsDialog()
 	visBtn->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
 	_listWidget->setCurrentRow(0);
+//	qDebug() << _listWidget->sizeHintForColumn(0) * _listWidget->count() + 2 * _listWidget->frameWidth();
+	//_listWidget->setFixedSize(310, 96);
 
 	QVBoxLayout* widgLay = new QVBoxLayout();
 	widgLay->addWidget(_listWidget);
@@ -51,7 +57,8 @@ SettingsDialog::SettingsDialog()
 	mainLay->addSpacing(12);
 	mainLay->addLayout(butLay);
 
-	setMinimumWidth(340);
+//	setMinimumWidth(400);
+
 	setLayout(mainLay);
 	setWindowTitle(tr("Settings"));
 }
