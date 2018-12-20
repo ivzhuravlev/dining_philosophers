@@ -20,14 +20,16 @@ set(H_FILES src/mainwindow.h
 			src/dinnerscenemanager.h
 			src/settings.h
 			src/settingsserializer.h
-			src/settingsdialog.h)
+			src/settingsdialog.h
+			src/dinnersettingswidget.h)
 
 set(CPP_FILES	src/mainwindow.cpp
 				src/main.cpp
 				src/logwidget.cpp
 				src/dinnerscenemanager.cpp
 				src/settingsserializer.cpp
-				src/settingsdialog.cpp)
+				src/settingsdialog.cpp
+				src/dinnersettingswidget.cpp)
 
 set(QRC_FILES	src/resources.qrc)
 
