@@ -15,6 +15,11 @@ namespace dph
 			thinkDur(thinkdur)
 		{}
 
+		DinnerSettings(int philnum, int eatdur, int thinkdur) :
+			DinnerSettings(philNum, std::chrono::milliseconds(eatdur),
+									std::chrono::milliseconds(thinkdur))
+		{}
+
 		DinnerSettings() :
 			DinnerSettings(5, 300ms, 300ms)
 		{}
