@@ -3,6 +3,7 @@
 #include <QDialog>
 
 class QListWidget;
+class QListWidgetItem;
 class QStackedWidget;
 
 class SettingsDialog : public QDialog
@@ -11,7 +12,12 @@ class SettingsDialog : public QDialog
 public:
 	SettingsDialog();
 
+private slots:
+	void changePage(QListWidgetItem* current, QListWidgetItem* previous);
+
 private:
+	void createIcons();
+
 	QListWidget*	_listWidget;
 	QStackedWidget*	_stackWidget;
 };
