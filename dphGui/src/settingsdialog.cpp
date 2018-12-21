@@ -16,6 +16,8 @@ SettingsDialog::SettingsDialog(dph::DinnerSettings dinSet, SceneSettings sceneSe
 								VisualSettings visSet, QWidget* parent) :
 	QDialog(parent)
 {
+	setMinimumSize(355, 320);
+
 	_listWidget = new QListWidget(this);
 	_listWidget->setViewMode(QListView::IconMode);
 	_listWidget->setIconSize(QSize(48, 48));
