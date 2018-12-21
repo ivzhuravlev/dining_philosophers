@@ -30,7 +30,7 @@ void SettingsSerializer::saveDinnerSettings(const DinnerSettings & dinSet)
 	_settings->beginGroup("DinnerSettings");
 	_settings->setValue("PhilNum", dinSet.philNum);
 	_settings->setValue("EatDuration", dinSet.eatDur.count());
-	_settings->setValue("ThinkDuration", dinSet.eatDur.count());
+	_settings->setValue("ThinkDuration", dinSet.thinkDur.count());
 	_settings->endGroup();
 }
 
@@ -87,7 +87,7 @@ DinnerSettings SettingsSerializer::loadDinnerSettings() const
 	_settings->beginGroup("DinnerSettings");
 	def.philNum = _settings->value("PhilNum", def.philNum).toInt();
 	def.eatDur = std::chrono::milliseconds(_settings->value("EatDuration", def.eatDur.count()).toInt());
-	def.thinkDur = std::chrono::milliseconds(_settings->value("ThinkDuration", def.eatDur.count()).toInt());
+	def.thinkDur = std::chrono::milliseconds(_settings->value("ThinkDuration", def.thinkDur.count()).toInt());
 	_settings->endGroup();
 
 	return def;
