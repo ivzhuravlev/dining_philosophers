@@ -3,6 +3,8 @@
 #include "dphCore/dinnersettings.h"
 #include "dinnersettingswidget.h"
 #include "scenesettingswidget.h"
+#include "visualsettingswidget.h"
+
 #include <QPushButton>
 #include <QListWidget>
 #include <QStackedWidget>
@@ -10,7 +12,8 @@
 #include <QVBoxLayout>
 #include <QDebug>
 
-SettingsDialog::SettingsDialog(QWidget* parent) :
+SettingsDialog::SettingsDialog(dph::DinnerSettings dinSet, SceneSettings sceneSet,
+								VisualSettings visSet, QWidget* parent) :
 	QDialog(parent)
 {
 	_listWidget = new QListWidget(this);
@@ -18,28 +21,34 @@ SettingsDialog::SettingsDialog(QWidget* parent) :
 	_listWidget->setIconSize(QSize(48, 48));
 	_listWidget->setMovement(QListView::Static);
 	_listWidget->setFlow(QListView::LeftToRight);
-	_listWidget->setSpacing(12);
+	_listWidget->setSpacing(20);
 	_listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	_listWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	_listWidget->setFixedSize(300, 96);
+	_listWidget->setFixedSize(332, 110);
 	createIcons();
 	_listWidget->setCurrentRow(0);
 
 	connect(_listWidget, &QListWidget::currentItemChanged, this, &SettingsDialog::changePage);
 
 	_stackWidget = new QStackedWidget(this);
-	_stackWidget->addWidget(new DinnerSettingsWidget(DinnerSettings(), _stackWidget));
-	_stackWidget->addWidget(new SceneSettingsWidget(SceneSettings(), _stackWidget));
+
+	_dinSetWidget = new DinnerSettingsWidget(dinSet, _stackWidget);
+	_sceneSetWidget = new SceneSettingsWidget(sceneSet, _stackWidget);
+	_visSetWidget = new VisualSettingsWidget(visSet, _stackWidget);
+
+	_stackWidget->addWidget(_dinSetWidget);
+	_stackWidget->addWidget(_sceneSetWidget);
+	_stackWidget->addWidget(_visSetWidget);
 	_stackWidget->setCurrentIndex(0);
 	
 	QVBoxLayout* widgLay = new QVBoxLayout();
 	widgLay->addWidget(_listWidget);
-//	widgLay->addStretch(1);
 	widgLay->addWidget(_stackWidget);
 
 	QPushButton* okBtn = new QPushButton(tr("OK"), this);
+	connect(okBtn, &QPushButton::clicked, this, &QDialog::accept);
 	QPushButton* cancelBtn = new QPushButton(tr("Cancel"), this);
-	connect(cancelBtn, &QPushButton::clicked, this, &QDialog::close);
+	connect(cancelBtn, &QPushButton::clicked, this, &QDialog::reject);
 
 	QHBoxLayout* butLay = new QHBoxLayout();
 	butLay->addStretch(1);
@@ -54,6 +63,21 @@ SettingsDialog::SettingsDialog(QWidget* parent) :
 	setLayout(mainLay);
 	setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	setWindowTitle(tr("Settings"));
+}
+
+DinnerSettings SettingsDialog::dinnerSettings() const
+{
+	return _dinSetWidget->dinnerSettings();
+}
+
+SceneSettings SettingsDialog::sceneSettings() const
+{
+	return _sceneSetWidget->sceneSettings();
+}
+
+VisualSettings SettingsDialog::visualSettings() const
+{
+	return _visSetWidget->visualSettings();
 }
 
 void SettingsDialog::createIcons()

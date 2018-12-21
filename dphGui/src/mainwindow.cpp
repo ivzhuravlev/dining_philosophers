@@ -71,11 +71,7 @@ void MainWindow::createActions()
 	_settingsAct->setToolTip(tr("Settings"));
 	actionMenu->addAction(_settingsAct);
 	actionBar->addAction(_settingsAct);
-	connect(_settingsAct, &QAction::triggered, [this]
-	{
-		SettingsDialog dialog;
-		dialog.exec();
-	});
+	connect(_settingsAct, &QAction::triggered, this, &MainWindow::openSettingsDialog);
 
 	actionMenu->addSeparator();
 
@@ -114,6 +110,31 @@ void MainWindow::createDinner()
 	connect(_dinner, &Dinner::philosopherStatus, _logWidget, &LogWidget::philStatusChanged);
 	connect(_dinner, &Dinner::philosopherStatus, _sceneManager, &DinnerSceneManager::philStatusChanged);
 	connect(_dinner, &Dinner::forkStatus, _sceneManager, &DinnerSceneManager::forkStatusChanged);
+}
+
+void MainWindow::openSettingsDialog()
+{
+	SettingsDialog* dialog = new SettingsDialog(_dinnerSettings, _sceneSettings,
+												_visualSettings, this);
+	if (dialog->exec() == QDialog::Accepted)
+	{
+		DinnerSettings newDinSet = dialog->dinnerSettings();
+		if (newDinSet != _dinnerSettings)
+		{
+			_dinnerSettings = newDinSet;
+			delete _dinner;
+			createDinner();
+		}
+
+		_sceneSettings = dialog->sceneSettings();
+		_visualSettings = dialog->visualSettings();
+
+		_sceneManager->setPhilNum(_dinnerSettings.philNum);
+		_sceneManager->setSceneSettings(_sceneSettings);
+		_sceneManager->setVisualSettings(_visualSettings);
+	};
+
+	dialog->deleteLater();
 }
 
 QRect MainWindow::findAvailableWindowGeometry()

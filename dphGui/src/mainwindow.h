@@ -26,6 +26,9 @@ public:
 protected:
 	void closeEvent(QCloseEvent* override);
 
+private slots:
+	void openSettingsDialog();
+
 private:
 	void loadSettings();
 	void saveSettings();

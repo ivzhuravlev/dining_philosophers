@@ -107,8 +107,9 @@ void DinnerSceneManager::setVisualSettings(const VisualSettings& visSet)
 	if (_visualSettings == visSet)
 		return;
 
+	clearScene();
 	_visualSettings = visSet;
-	_scene->invalidate();
+	populateScene();
 }
 
 void DinnerSceneManager::philStatusChanged(int p, PhilosopherStatus pStat)
