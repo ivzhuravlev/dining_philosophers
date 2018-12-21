@@ -28,6 +28,8 @@ protected:
 
 private slots:
 	void openSettingsDialog();
+	void openAbout();
+	void openAboutQt();
 
 private:
 	void loadSettings();

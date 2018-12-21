@@ -15,6 +15,7 @@
 #include <QIcon>
 #include <QSplitter>
 #include <QGraphicsView>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget* parent) :
 	QMainWindow(parent),
@@ -35,6 +36,19 @@ MainWindow::MainWindow(QWidget* parent) :
 void MainWindow::closeEvent(QCloseEvent * override)
 {
 	saveSettings();
+}
+
+void MainWindow::openAbout()
+{
+	QMessageBox::about(this, tr("About"),
+		tr("Simple solution of classic <br>Dining Philosophers problem<br>") +
+		QString("<a href=\"https://github.com/ivzhuravlev/dining_philosophers/\">GitHub</a><br>") +
+		tr("(c) Ivan Zhuravlev, 2018"));
+}
+
+void MainWindow::openAboutQt()
+{
+	QMessageBox::aboutQt(this, tr("About Qt"));
 }
 
 void MainWindow::loadSettings()
@@ -67,7 +81,7 @@ void MainWindow::createActions()
 	actionMenu->addAction(_stopDinnerAct);
 	actionBar->addAction(_stopDinnerAct);
 
-	_settingsAct = new QAction(QIcon(":/resources/settings.png"), tr("Se&ttings"), this);
+	_settingsAct = new QAction(QIcon(":/resources/settings.png"), tr("Se&ttings..."), this);
 	_settingsAct->setToolTip(tr("Settings"));
 	actionMenu->addAction(_settingsAct);
 	actionBar->addAction(_settingsAct);
@@ -79,6 +93,16 @@ void MainWindow::createActions()
 	exitAct->setToolTip(tr("Go away"));
 	connect(exitAct, SIGNAL(triggered()), SLOT(close()));
 	actionMenu->addAction(exitAct);
+
+	QMenu* helpMenu = menuBar()->addMenu(tr("&Help"));
+	QAction* aboutAct = new QAction(QIcon(":/resources/philosophy.png"), tr("A&bout..."), this);
+	connect(aboutAct, &QAction::triggered, this, &MainWindow::openAbout);
+
+	QAction* aboutQtAct = new QAction(QIcon(":/resources/qt_logo.png"), tr("About &Qt..."), this);
+	connect(aboutQtAct, &QAction::triggered, this, &MainWindow::openAboutQt);
+
+	helpMenu->addAction(aboutAct);
+	helpMenu->addAction(aboutQtAct);
 }
 
 void MainWindow::createWidgets()

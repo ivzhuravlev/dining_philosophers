@@ -8,5 +8,6 @@
         <file>resources/palette.png</file>
         <file>resources/spaghetti.png</file>
         <file>resources/settings.png</file>
+        <file>resources/qt_logo.png</file>
     </qresource>
 </RCC>
