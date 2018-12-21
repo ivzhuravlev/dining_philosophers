@@ -12,8 +12,8 @@ DinnerSettingsWidget::DinnerSettingsWidget(DinnerSettings def, QWidget* parent) 
 {
 	QLabel* numLbl = new QLabel(tr("Number of philosophers"), this);
 	_numSpin = new QSpinBox(this);
-	_numSpin->setMinimum(4);
-	_numSpin->setMaximum(8);
+	_numSpin->setMinimum(2);
+	_numSpin->setMaximum(16);
 	_numSpin->setValue(def.philNum);
 
 	QHBoxLayout* numLay = new QHBoxLayout();

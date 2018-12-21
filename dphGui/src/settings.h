@@ -60,7 +60,7 @@ struct VisualSettings
 		forkColors[ForkStatus::Available] = QColor(qRgb(0, 153, 51));	//green
 		forkColors[ForkStatus::Occupied] = QColor(qRgb(204, 0, 0));		//red
 
-		font = QFont("Times", 14, QFont::DemiBold);
+		font = QFont("Arial", 14, QFont::DemiBold);
 	}
 
 	QMap<PhilosopherStatus, QColor> philColors;

@@ -10,8 +10,8 @@ SceneSettingsWidget::SceneSettingsWidget(SceneSettings def, QWidget* parent) :
 {
 	QLabel* philRadLbl = new QLabel(tr("Philosopher circle radius"), this);
 	_philRadSpin = new QSpinBox(this);
-	_philRadSpin->setMinimum(40);
-	_philRadSpin->setMaximum(80);
+	_philRadSpin->setMinimum(20);
+	_philRadSpin->setMaximum(100);
 	_philRadSpin->setValue(def.philRadius);
 
 	QHBoxLayout* philRadLay = new QHBoxLayout();
@@ -20,7 +20,7 @@ SceneSettingsWidget::SceneSettingsWidget(SceneSettings def, QWidget* parent) :
 
 	QLabel* tableRadLbl = new QLabel(tr("Table circle radius"), this);
 	_tableRadSpin = new QSpinBox(this);
-	_tableRadSpin->setMinimum(130);
+	_tableRadSpin->setMinimum(100);
 	_tableRadSpin->setMaximum(10000);
 	_tableRadSpin->setValue(def.tableRadius);
 
@@ -30,7 +30,7 @@ SceneSettingsWidget::SceneSettingsWidget(SceneSettings def, QWidget* parent) :
 
 	QLabel* forkWLbl = new QLabel(tr("Fork width"), this);
 	_forkWSpin = new QSpinBox(this);
-	_forkWSpin->setMinimum(5);
+	_forkWSpin->setMinimum(1);
 	_forkWSpin->setMaximum(100);
 	_forkWSpin->setValue(def.forkWidth);
 
