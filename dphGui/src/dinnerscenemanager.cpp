@@ -124,5 +124,6 @@ void DinnerSceneManager::forkStatusChanged(int p, ForkStatus fStat)
 	if (p >= _philNum)
 		return;
 
+	p = (p - 1 + _philNum) % _philNum;
 	_forks[p]->setBrush(QBrush(_visualSettings.forkColors[fStat]));
 }
