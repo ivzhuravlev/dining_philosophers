@@ -10,7 +10,8 @@
 #include <QVBoxLayout>
 #include <QDebug>
 
-SettingsDialog::SettingsDialog()
+SettingsDialog::SettingsDialog(QWidget* parent) :
+	QDialog(parent)
 {
 	_listWidget = new QListWidget(this);
 	_listWidget->setViewMode(QListView::IconMode);
