@@ -12,6 +12,7 @@ class SceneSettingsWidget : public QWidget
 public:
 	SceneSettingsWidget(SceneSettings def, QWidget* parent = nullptr);
 	SceneSettings sceneSettings() const;
+	void setDefault();
 private:
 	QSpinBox* _philRadSpin;
 	QSpinBox* _tableRadSpin;

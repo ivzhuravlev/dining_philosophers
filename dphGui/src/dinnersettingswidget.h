@@ -16,6 +16,7 @@ class DinnerSettingsWidget : public QWidget
 public:
 	DinnerSettingsWidget(DinnerSettings def, QWidget* parent = nullptr);
 	DinnerSettings dinnerSettings() const;
+	void setDefault();
 private:
 	QSpinBox* _numSpin;
 	QSpinBox* _eatSpin;

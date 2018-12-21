@@ -53,3 +53,11 @@ DinnerSettings DinnerSettingsWidget::dinnerSettings() const
 	DinnerSettings settings(_numSpin->value(), _eatSpin->value(), _thinkSpin->value());
 	return settings;
 }
+
+void DinnerSettingsWidget::setDefault()
+{
+	DinnerSettings def;
+	_numSpin->setValue(def.philNum);
+	_eatSpin->setValue(def.eatDur.count());
+	_thinkSpin->setValue(def.thinkDur.count());
+}

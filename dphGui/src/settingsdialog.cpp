@@ -46,11 +46,15 @@ SettingsDialog::SettingsDialog(dph::DinnerSettings dinSet, SceneSettings sceneSe
 	widgLay->addWidget(_stackWidget);
 
 	QPushButton* okBtn = new QPushButton(tr("OK"), this);
+	okBtn->setDefault(true);
 	connect(okBtn, &QPushButton::clicked, this, &QDialog::accept);
 	QPushButton* cancelBtn = new QPushButton(tr("Cancel"), this);
 	connect(cancelBtn, &QPushButton::clicked, this, &QDialog::reject);
+	QPushButton* defBtn = new QPushButton(tr("Default"), this);
+	connect(defBtn, &QPushButton::clicked, this, &SettingsDialog::setDefault);
 
 	QHBoxLayout* butLay = new QHBoxLayout();
+	butLay->addWidget(defBtn);
 	butLay->addStretch(1);
 	butLay->addWidget(okBtn);
 	butLay->addWidget(cancelBtn);
@@ -78,6 +82,24 @@ SceneSettings SettingsDialog::sceneSettings() const
 VisualSettings SettingsDialog::visualSettings() const
 {
 	return _visSetWidget->visualSettings();
+}
+
+void SettingsDialog::setDefault()
+{
+	switch (_stackWidget->currentIndex())
+	{
+	case 0:
+		_dinSetWidget->setDefault();
+		break;
+	case 1:
+		_sceneSetWidget->setDefault();
+		break;
+	case 2:
+		_visSetWidget->setDefault();
+		break;
+	default:
+		break;
+	}
 }
 
 void SettingsDialog::createIcons()

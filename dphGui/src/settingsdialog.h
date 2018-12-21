@@ -30,6 +30,7 @@ public:
 
 private slots:
 	void changePage(QListWidgetItem* current, QListWidgetItem* previous);
+	void setDefault();
 
 private:
 	void createIcons();

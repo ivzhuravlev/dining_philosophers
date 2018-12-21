@@ -12,6 +12,7 @@ class VisualSettingsWidget : public QWidget
 public:
 	VisualSettingsWidget(const VisualSettings& def, QWidget* parent = nullptr);
 	VisualSettings visualSettings() const;
+	void setDefault();
 
 private:
 	QString fontToString(const QFont& font) const;

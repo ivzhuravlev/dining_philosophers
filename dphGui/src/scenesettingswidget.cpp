@@ -63,3 +63,12 @@ SceneSettings SceneSettingsWidget::sceneSettings() const
 						   _forkWSpin->value(), _forkHSpin->value());
 	return settings;
 }
+
+void SceneSettingsWidget::setDefault()
+{
+	SceneSettings def;
+	_philRadSpin->setValue(def.philRadius);
+	_tableRadSpin->setValue(def.tableRadius);
+	_forkWSpin->setValue(def.forkWidth);
+	_forkHSpin->setValue(def.forkHeight);
+}

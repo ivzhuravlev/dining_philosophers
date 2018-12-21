@@ -201,6 +201,19 @@ VisualSettings VisualSettingsWidget::visualSettings() const
 	return _result;
 }
 
+void VisualSettingsWidget::setDefault()
+{
+	VisualSettings def;
+	_waitColorLbl->setPalette(def.philColors[PhilosopherStatus::Wait]);
+	_eatColorLbl->setPalette(def.philColors[PhilosopherStatus::Eat]);
+	_thinkColorLbl->setPalette(def.philColors[PhilosopherStatus::Think]);
+	_finishColorLbl->setPalette(def.philColors[PhilosopherStatus::Finish]);
+	_availColorLbl->setPalette(def.forkColors[ForkStatus::Available]);
+	_occupyColorLbl->setPalette(def.forkColors[ForkStatus::Occupied]);;
+	_fontLbl->setText(fontToString(def.font));
+	_result = def;
+}
+
 QString VisualSettingsWidget::fontToString(const QFont & font) const
 {
 	return QString("%1, %2").arg(font.family()).arg(font.pointSize());
