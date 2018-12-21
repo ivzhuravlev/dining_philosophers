@@ -61,13 +61,13 @@ void Dinner::receivedEvent(PhilosopherEvent e)
 		emit forkStatus(e.number, ForkStatus::Occupied);
 		break;
 	case RightForkTaken:
-		emit forkStatus((e.number + 1) % 5 , ForkStatus::Occupied);
+		emit forkStatus((e.number + 1) % _settings.philNum, ForkStatus::Occupied);
 		break;
 	case LeftForkReleased:
 		emit forkStatus(e.number, ForkStatus::Available);
 		break;
 	case RightForkReleased:
-		emit forkStatus((e.number + 1) % 5, ForkStatus::Available);
+		emit forkStatus((e.number + 1) % _settings.philNum, ForkStatus::Available);
 		break;
 	}
 }
@@ -101,5 +101,5 @@ QMutex* Dinner::leftFork(int phil)
 
 QMutex* Dinner::rightFork(int phil)
 {
-	return _forks[(phil + 1) % 5].get();
+	return _forks[(phil + 1) % _settings.philNum].get();
 }
