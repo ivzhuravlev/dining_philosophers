@@ -1,7 +1,6 @@
 #pragma once
 
-#include "status.h"
-#include "philevent.h"
+#include "dphCore/philevent.h"
 #include "dinnersettings.h"
 
 #include <QObject>
@@ -15,6 +14,9 @@
 namespace dph
 {
 	class Philosopher;
+//	struct PhilosopherEvent;
+	enum class PhilosopherStatus;
+	enum class ForkStatus;
 	
 	class Dinner : public QObject
 	{

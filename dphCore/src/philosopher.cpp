@@ -1,5 +1,4 @@
-#include "dphCore/philosopher.h"
-#include "dphCore/philevent.h"
+#include "philosopher.h"
 #include <QThread>
 
 using namespace dph;
@@ -13,7 +12,6 @@ Philosopher::Philosopher(QMutex* leftFork, QMutex* rightFork, QSemaphore* footMa
 	_stopFlag(false),
 	_params(params)
 	{
-		qRegisterMetaType<PhilosopherEvent>("PhilosopherEvent");
 	}
 	
 void Philosopher::start()

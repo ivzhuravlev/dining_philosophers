@@ -14,17 +14,20 @@ find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
 
 # Set source files to build
 set(H_FILES "${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinner.h"
+			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinnersettings.h"
 			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/status.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philparameters.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philosopher.h"
 			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philevent.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinnersettings.h")
+			"src/philparameters.h"
+			"src/philosopher.h")
 			
 set(CPP_FILES "src/dinner.cpp"
 			  "src/philosopher.cpp")
 
 # Set name of source group for generated files
 source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
+
+# Set include current directory
+set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Set include directories
 include_directories("src" ${COMMON_INCLUDE_DIRECTORY})

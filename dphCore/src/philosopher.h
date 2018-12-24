@@ -1,7 +1,6 @@
 #pragma once
 
-#include "status.h"
-#include "philevent.h"
+#include "dphCore/philevent.h"
 #include "philparameters.h"
 
 #include <QObject>

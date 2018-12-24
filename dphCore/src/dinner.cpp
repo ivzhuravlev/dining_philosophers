@@ -1,6 +1,7 @@
 #include "dphCore/dinner.h"
-#include "dphCore/philparameters.h"
-#include "dphCore/philosopher.h"
+#include "dphCore/status.h"
+#include "philparameters.h"
+#include "philosopher.h"
 
 using namespace dph;
 
@@ -8,6 +9,7 @@ Dinner::Dinner(const DinnerSettings& settings, QObject* parent) :
 	QObject(parent),
 	_settings(settings)
 	{
+		qRegisterMetaType<PhilosopherEvent>("PhilosopherEvent");
 		qRegisterMetaType<PhilosopherStatus>("PhilosopherStatus");
 		qRegisterMetaType<ForkStatus>("ForkStatus");
 		init();
