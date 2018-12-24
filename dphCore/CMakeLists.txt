@@ -24,7 +24,7 @@ set(CPP_FILES "src/dinner.cpp"
 			  "src/philosopher.cpp")
 
 # Set name of source group for generated files
-#source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
+source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
 
 # Set include directories
 include_directories("src" ${COMMON_INCLUDE_DIRECTORY})
