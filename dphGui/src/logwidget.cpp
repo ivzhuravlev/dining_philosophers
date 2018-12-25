@@ -30,11 +30,11 @@ void LogWidget::philStatusChanged(int p, PhilosopherStatus pStat)
 		break;
 	}
 
-	append(QString(tr("%1 - %2 %3%4 %5")).arg(currentTime(),
-												tr("Philosopher"),
-												tr("#"),
-												QString::number(p),
-												status));
+	append(QString("%1 - %2 %3%4 %5").arg(currentTime(),
+											tr("Philosopher"),
+											"#",
+											QString::number(p),
+											status));
 }
 
 QString LogWidget::currentTime()

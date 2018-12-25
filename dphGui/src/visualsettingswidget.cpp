@@ -59,7 +59,7 @@ VisualSettingsWidget::VisualSettingsWidget(const VisualSettings& def, QWidget* p
 
 	QToolButton* eatToolBtn = new QToolButton();
 	eatToolBtn->setToolButtonStyle(Qt::ToolButtonTextOnly);
-	eatToolBtn->setText(tr("..."));
+	eatToolBtn->setText("...");
 	connect(eatToolBtn, &QToolButton::clicked, [&](bool checked)
 	{
 		QColor newColor = QColorDialog::getColor(_result.philColors[PhilosopherStatus::Eat],
