@@ -9,6 +9,7 @@
 #include <QScreen>
 #include <QStyle>
 #include <QAction>
+#include <QActionGroup>
 #include <QMenuBar>
 #include <QMenu>
 #include <QToolBar>
@@ -93,6 +94,21 @@ void MainWindow::createActions()
 	exitAct->setToolTip(tr("Go away"));
 	connect(exitAct, SIGNAL(triggered()), SLOT(close()));
 	actionMenu->addAction(exitAct);
+
+	QMenu* langMenu = menuBar()->addMenu(tr("&Language"));
+	QAction* engAct = new QAction(QIcon(":/resources/usa.png"), tr("&English"), this);
+	engAct->setCheckable(true);
+	QAction* rusAct = new QAction(QIcon(":/resources/rus.png"), tr("&Russian"), this);
+	rusAct->setCheckable(true);
+
+	QActionGroup* actGroup = new QActionGroup(this);
+	actGroup->setExclusive(true);
+	actGroup->addAction(engAct);
+	actGroup->addAction(rusAct);
+	engAct->setChecked(true);
+
+	langMenu->addAction(engAct);
+	langMenu->addAction(rusAct);
 
 	QMenu* helpMenu = menuBar()->addMenu(tr("&Help"));
 	QAction* aboutAct = new QAction(QIcon(":/resources/philosophy.png"), tr("A&bout..."), this);
