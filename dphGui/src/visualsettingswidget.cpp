@@ -35,7 +35,7 @@ VisualSettingsWidget::VisualSettingsWidget(const VisualSettings& def, QWidget* p
 
 	QToolButton* waitToolBtn = new QToolButton();
 	waitToolBtn->setToolButtonStyle(Qt::ToolButtonTextOnly);
-	waitToolBtn->setText(tr("..."));
+	waitToolBtn->setText("...");
 	connect(waitToolBtn, &QToolButton::clicked, [&](bool checked)
 	{
 		QColor newColor = QColorDialog::getColor(_result.philColors[PhilosopherStatus::Wait],
@@ -81,7 +81,7 @@ VisualSettingsWidget::VisualSettingsWidget(const VisualSettings& def, QWidget* p
 
 	QToolButton* thinkToolBtn = new QToolButton();
 	thinkToolBtn->setToolButtonStyle(Qt::ToolButtonTextOnly);
-	thinkToolBtn->setText(tr("..."));
+	thinkToolBtn->setText("...");
 	connect(thinkToolBtn, &QToolButton::clicked, [&](bool checked)
 	{
 		QColor newColor = QColorDialog::getColor(_result.philColors[PhilosopherStatus::Think],
@@ -103,7 +103,7 @@ VisualSettingsWidget::VisualSettingsWidget(const VisualSettings& def, QWidget* p
 
 	QToolButton* finishToolBtn = new QToolButton();
 	finishToolBtn->setToolButtonStyle(Qt::ToolButtonTextOnly);
-	finishToolBtn->setText(tr("..."));
+	finishToolBtn->setText("...");
 	connect(finishToolBtn, &QToolButton::clicked, [&](bool checked)
 	{
 		QColor newColor = QColorDialog::getColor(_result.philColors[PhilosopherStatus::Finish],
@@ -129,7 +129,7 @@ VisualSettingsWidget::VisualSettingsWidget(const VisualSettings& def, QWidget* p
 
 	QToolButton* availToolBtn = new QToolButton();
 	availToolBtn->setToolButtonStyle(Qt::ToolButtonTextOnly);
-	availToolBtn->setText(tr("..."));
+	availToolBtn->setText("...");
 	connect(availToolBtn, &QToolButton::clicked, [&](bool checked)
 	{
 		QColor newColor = QColorDialog::getColor(_result.forkColors[ForkStatus::Available],
@@ -153,7 +153,7 @@ VisualSettingsWidget::VisualSettingsWidget(const VisualSettings& def, QWidget* p
 
 	QToolButton* occupyToolBtn = new QToolButton();
 	occupyToolBtn->setToolButtonStyle(Qt::ToolButtonTextOnly);
-	occupyToolBtn->setText(tr("..."));
+	occupyToolBtn->setText("...");
 	connect(occupyToolBtn, &QToolButton::clicked, [&](bool checked)
 	{
 		QColor newColor = QColorDialog::getColor(_result.forkColors[ForkStatus::Occupied],
@@ -174,7 +174,7 @@ VisualSettingsWidget::VisualSettingsWidget(const VisualSettings& def, QWidget* p
 
 	QToolButton* fontToolBtn = new QToolButton();
 	fontToolBtn->setToolButtonStyle(Qt::ToolButtonTextOnly);
-	fontToolBtn->setText(tr("..."));
+	fontToolBtn->setText("...");
 	connect(fontToolBtn, &QToolButton::clicked, [&](bool checked)
 	{
 		bool ok;
