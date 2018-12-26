@@ -79,3 +79,10 @@ add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_
 																						$<TARGET_FILE:Qt5::Gui>
 																						$<TARGET_FILE:Qt5::Widgets>
 																						$<TARGET_FILE_DIR:${dphGui_PROJECT}>)
+
+# Copy translation files .qm to .exe file
+add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_different 
+${CMAKE_CURRENT_BINARY_DIR}/english.qm $<TARGET_FILE_DIR:${dphGui_PROJECT}>/translations/english.qm)
+
+add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_different 
+${CMAKE_CURRENT_BINARY_DIR}/russian.qm $<TARGET_FILE_DIR:${dphGui_PROJECT}>/translations/russian.qm)
