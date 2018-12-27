@@ -46,111 +46,116 @@
         <source>Philosopher</source>
         <translation>Philosopher</translation>
     </message>
+    <message>
+        <location filename="../logwidget.cpp" line="35"/>
+        <source>#</source>
+        <translation>#</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="46"/>
+        <location filename="../mainwindow.cpp" line="47"/>
         <source>About</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="47"/>
+        <location filename="../mainwindow.cpp" line="48"/>
         <source>Simple solution of classic &lt;br&gt;Dining Philosophers problem&lt;br&gt;</source>
         <translation>Simple solution of classic &lt;br&gt;Dining Philosophers problem&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="49"/>
+        <location filename="../mainwindow.cpp" line="50"/>
         <source>(c) Ivan Zhuravlev, 2018</source>
         <translation>(c) Ivan Zhuravlev, 2018</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="54"/>
+        <location filename="../mainwindow.cpp" line="55"/>
         <source>About Qt</source>
         <translation>About Qt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="164"/>
+        <location filename="../mainwindow.cpp" line="167"/>
         <source>&amp;Actions</source>
         <translation>&amp;Actions</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="74"/>
+        <location filename="../mainwindow.cpp" line="77"/>
         <source>Actions</source>
         <translation>Actions</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="162"/>
+        <location filename="../mainwindow.cpp" line="165"/>
         <source>Dining Philosophers</source>
         <translation>Dining Philosophers</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="168"/>
+        <location filename="../mainwindow.cpp" line="171"/>
         <source>&amp;Start Dinner</source>
         <translation>&amp;Start Dinner</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="169"/>
+        <location filename="../mainwindow.cpp" line="172"/>
         <source>Let the dinner begins</source>
         <translation>Let the dinner begins</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="170"/>
+        <location filename="../mainwindow.cpp" line="173"/>
         <source>Sto&amp;p Dinner</source>
         <translation>Sto&amp;p Dinner</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="171"/>
+        <location filename="../mainwindow.cpp" line="174"/>
         <source>Enough of this nonsense</source>
         <translation>Enough of this nonsense</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="172"/>
+        <location filename="../mainwindow.cpp" line="175"/>
         <source>Se&amp;ttings...</source>
         <translation>Se&amp;ttings...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="173"/>
+        <location filename="../mainwindow.cpp" line="176"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="174"/>
+        <location filename="../mainwindow.cpp" line="177"/>
         <source>&amp;Exit</source>
         <translation>&amp;Exit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="178"/>
         <source>Go away</source>
         <translation>Go away</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="165"/>
+        <location filename="../mainwindow.cpp" line="168"/>
         <source>&amp;Language</source>
         <translation>&amp;Language</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="176"/>
+        <location filename="../mainwindow.cpp" line="179"/>
         <source>&amp;English</source>
         <translation>&amp;English</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="177"/>
+        <location filename="../mainwindow.cpp" line="180"/>
         <source>&amp;Russian</source>
         <translation>&amp;Russian</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="166"/>
+        <location filename="../mainwindow.cpp" line="169"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="178"/>
+        <location filename="../mainwindow.cpp" line="181"/>
         <source>A&amp;bout...</source>
         <translation>A&amp;bout...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="179"/>
+        <location filename="../mainwindow.cpp" line="182"/>
         <source>About &amp;Qt...</source>
         <translation>About &amp;Qt...</translation>
     </message>
