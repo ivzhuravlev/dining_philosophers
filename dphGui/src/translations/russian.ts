@@ -50,102 +50,107 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="44"/>
+        <location filename="../mainwindow.cpp" line="46"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="45"/>
+        <location filename="../mainwindow.cpp" line="47"/>
         <source>Simple solution of classic &lt;br&gt;Dining Philosophers problem&lt;br&gt;</source>
-        <translation>Решение классической проблемы &lt;br&gt;об Обедающих философах&lt;br&gt;</translation>
+        <translation>Решение классической проблемы &lt;br&gt;Обедающих философов&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="47"/>
+        <location filename="../mainwindow.cpp" line="49"/>
         <source>(c) Ivan Zhuravlev, 2018</source>
         <translation>(с) Иван Журавлев, 2018</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="52"/>
+        <location filename="../mainwindow.cpp" line="54"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="71"/>
+        <location filename="../mainwindow.cpp" line="164"/>
         <source>&amp;Actions</source>
         <translation>&amp;Действия</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="72"/>
+        <location filename="../mainwindow.cpp" line="74"/>
         <source>Actions</source>
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="75"/>
+        <location filename="../mainwindow.cpp" line="162"/>
+        <source>Dining Philosophers</source>
+        <translation>Обедающие философы</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="168"/>
         <source>&amp;Start Dinner</source>
         <translation>&amp;Начать обед</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="76"/>
+        <location filename="../mainwindow.cpp" line="169"/>
         <source>Let the dinner begins</source>
         <translation>Начать обед</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="80"/>
+        <location filename="../mainwindow.cpp" line="170"/>
         <source>Sto&amp;p Dinner</source>
         <translation>&amp;Остановить обед</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="81"/>
+        <location filename="../mainwindow.cpp" line="171"/>
         <source>Enough of this nonsense</source>
         <translation>Закончить обед</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
+        <location filename="../mainwindow.cpp" line="172"/>
         <source>Se&amp;ttings...</source>
         <translation>Н&amp;астройки...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="86"/>
+        <location filename="../mainwindow.cpp" line="173"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="93"/>
+        <location filename="../mainwindow.cpp" line="174"/>
         <source>&amp;Exit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="94"/>
+        <location filename="../mainwindow.cpp" line="175"/>
         <source>Go away</source>
         <translation>Выйти из программы</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="98"/>
+        <location filename="../mainwindow.cpp" line="165"/>
         <source>&amp;Language</source>
         <translation>&amp;Язык</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="99"/>
+        <location filename="../mainwindow.cpp" line="176"/>
         <source>&amp;English</source>
         <translation>&amp;Английский</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="101"/>
+        <location filename="../mainwindow.cpp" line="177"/>
         <source>&amp;Russian</source>
         <translation>&amp;Русский</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="113"/>
+        <location filename="../mainwindow.cpp" line="166"/>
         <source>&amp;Help</source>
         <translation>&amp;Справка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="114"/>
+        <location filename="../mainwindow.cpp" line="178"/>
         <source>A&amp;bout...</source>
         <translation>&amp;О программе...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="117"/>
+        <location filename="../mainwindow.cpp" line="179"/>
         <source>About &amp;Qt...</source>
         <translation>О &amp;Qt...</translation>
     </message>
@@ -203,12 +208,12 @@
     <message>
         <location filename="../settingsdialog.cpp" line="117"/>
         <source>Scene settings</source>
-        <translation>Настройки сцены</translation>
+        <translation>Сцена</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="123"/>
         <source>Visual settings</source>
-        <translation>Визуальные настройки</translation>
+        <translation>Внешний вид</translation>
     </message>
 </context>
 <context>
