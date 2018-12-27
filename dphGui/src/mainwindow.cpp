@@ -111,7 +111,7 @@ void MainWindow::createActions()
 	actGroup->setExclusive(true);
 	actGroup->addAction(_engAct);
 	actGroup->addAction(_rusAct);
-	_engAct->setChecked(true);
+//	_engAct->setChecked(true);
 
 	_langMenu->addAction(_engAct);
 	_langMenu->addAction(_rusAct);
@@ -198,6 +198,9 @@ void MainWindow::loadTranslator()
 
 	qApp->installTranslator(translator);
 	_language = lang;
+	if (action)
+		action->setChecked(true);
+
 	setText();
 }
 
