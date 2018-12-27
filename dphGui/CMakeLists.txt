@@ -48,6 +48,9 @@ source_group("Resource Files" FILES ${QRC_FILES})
 # Set name of source group for generated files
 source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
 
+# Set source group for .ts files
+source_group("Translation Files" FILES ${TS_FILES})
+
 # Create .qm files from .ts files
 qt5_create_translation(QM_FILES ${CPP_FILES} ${TS_FILES})
 
@@ -66,7 +69,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
 
 # Set build target
-add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES})
+add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES} ${TS_FILES})
 
 # Set dependency on translation target
 add_dependencies(${dphGui_PROJECT} ${dphTranslate})
