@@ -50,6 +50,7 @@ source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
 
 # Create .qm files from .ts files
 qt5_add_translation(QM_FILES ${TS_FILES})
+#qt5_create_translation(QM_FILES ${CPP_FILES} ${TS_FILES})
 
 # Set source group for .ts files
 source_group("Translation Files" FILES ${TS_FILES})

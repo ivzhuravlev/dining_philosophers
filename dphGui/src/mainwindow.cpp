@@ -17,6 +17,8 @@
 #include <QSplitter>
 #include <QGraphicsView>
 #include <QMessageBox>
+#include <QDir>
+#include <QTranslator>
 
 MainWindow::MainWindow(QWidget* parent) :
 	QMainWindow(parent),
@@ -32,6 +34,7 @@ MainWindow::MainWindow(QWidget* parent) :
 	setCentralWidget(_splitter);
 	setGeometry(_availGeometry);
 	setWindowIcon(QIcon(":/resources/philosophy.png"));
+	loadTranslator();
 }
 
 void MainWindow::closeEvent(QCloseEvent * override)
@@ -54,6 +57,7 @@ void MainWindow::openAboutQt()
 
 void MainWindow::loadSettings()
 {
+	_language = _settingsSerializer->loadLangSettings();
 	_dinnerSettings = _settingsSerializer->loadDinnerSettings();
 	_sceneSettings = _settingsSerializer->loadSceneSettings();
 	_visualSettings = _settingsSerializer->loadVisualSettings();
@@ -61,6 +65,7 @@ void MainWindow::loadSettings()
 
 void MainWindow::saveSettings()
 {
+	_settingsSerializer->saveLangSettings(_language);
 	_settingsSerializer->saveDinnerSettings(_dinnerSettings);
 	_settingsSerializer->saveSceneSettings(_sceneSettings);
 	_settingsSerializer->saveVisualSettings(_visualSettings);
@@ -68,57 +73,60 @@ void MainWindow::saveSettings()
 
 void MainWindow::createActions()
 {
-	QMenu* actionMenu = menuBar()->addMenu(tr("&Actions"));
+	_actionMenu = menuBar()->addMenu(QString());
 	QToolBar* actionBar = addToolBar(tr("Actions"));
 	actionBar->setIconSize(QSize(24, 24));
 
-	_startDinnerAct = new QAction(QIcon(":/resources/start.png"), tr("&Start Dinner"), this);
-	_startDinnerAct->setToolTip(tr("Let the dinner begins"));
-	actionMenu->addAction(_startDinnerAct);
+	_startDinnerAct = new QAction(QIcon(":/resources/start.png"), QString(),this);
+	_actionMenu->addAction(_startDinnerAct);
 	actionBar->addAction(_startDinnerAct);
 
-	_stopDinnerAct = new QAction(QIcon(":/resources/stop.png"), tr("Sto&p Dinner"), this);
-	_stopDinnerAct->setToolTip(tr("Enough of this nonsense"));
-	actionMenu->addAction(_stopDinnerAct);
+	_stopDinnerAct = new QAction(QIcon(":/resources/stop.png"), QString(), this);
+	_actionMenu->addAction(_stopDinnerAct);
 	actionBar->addAction(_stopDinnerAct);
 
-	_settingsAct = new QAction(QIcon(":/resources/settings.png"), tr("Se&ttings..."), this);
-	_settingsAct->setToolTip(tr("Settings"));
-	actionMenu->addAction(_settingsAct);
+	_settingsAct = new QAction(QIcon(":/resources/settings.png"), QString(), this);
+	_actionMenu->addAction(_settingsAct);
 	actionBar->addAction(_settingsAct);
 	connect(_settingsAct, &QAction::triggered, this, &MainWindow::openSettingsDialog);
 
-	actionMenu->addSeparator();
+	_actionMenu->addSeparator();
 
-	QAction* exitAct = new QAction(QIcon(":/resources/exit.png"), tr("&Exit"), this);
-	exitAct->setToolTip(tr("Go away"));
-	connect(exitAct, SIGNAL(triggered()), SLOT(close()));
-	actionMenu->addAction(exitAct);
+	_exitAct = new QAction(QIcon(":/resources/exit.png"), QString(), this);
+	connect(_exitAct, SIGNAL(triggered()), SLOT(close()));
+	_actionMenu->addAction(_exitAct);
 
-	QMenu* langMenu = menuBar()->addMenu(tr("&Language"));
-	QAction* engAct = new QAction(QIcon(":/resources/usa.png"), tr("&English"), this);
-	engAct->setCheckable(true);
-	QAction* rusAct = new QAction(QIcon(":/resources/rus.png"), tr("&Russian"), this);
-	rusAct->setCheckable(true);
+	_langMenu = menuBar()->addMenu(QString());
+	_engAct = new QAction(QIcon(":/resources/usa.png"), QString(), this);
+	_engAct->setData("english");
+	_engAct->setCheckable(true);
+	_rusAct = new QAction(QIcon(":/resources/rus.png"), QString(), this);
+	_rusAct->setData("russian");
+	_rusAct->setCheckable(true);
+
+	connect(_engAct, &QAction::triggered, this, &MainWindow::loadTranslator);
+	connect(_rusAct, &QAction::triggered, this, &MainWindow::loadTranslator);
 
 	QActionGroup* actGroup = new QActionGroup(this);
 	actGroup->setExclusive(true);
-	actGroup->addAction(engAct);
-	actGroup->addAction(rusAct);
-	engAct->setChecked(true);
+	actGroup->addAction(_engAct);
+	actGroup->addAction(_rusAct);
+	_engAct->setChecked(true);
 
-	langMenu->addAction(engAct);
-	langMenu->addAction(rusAct);
+	_langMenu->addAction(_engAct);
+	_langMenu->addAction(_rusAct);
 
-	QMenu* helpMenu = menuBar()->addMenu(tr("&Help"));
-	QAction* aboutAct = new QAction(QIcon(":/resources/philosophy.png"), tr("A&bout..."), this);
-	connect(aboutAct, &QAction::triggered, this, &MainWindow::openAbout);
+	_helpMenu = menuBar()->addMenu(QString());
+	_aboutAct = new QAction(QIcon(":/resources/philosophy.png"), QString(), this);
+	connect(_aboutAct, &QAction::triggered, this, &MainWindow::openAbout);
 
-	QAction* aboutQtAct = new QAction(QIcon(":/resources/qt_logo.png"), tr("About &Qt..."), this);
-	connect(aboutQtAct, &QAction::triggered, this, &MainWindow::openAboutQt);
+	_aboutQtAct = new QAction(QIcon(":/resources/qt_logo.png"), QString(), this);
+	connect(_aboutQtAct, &QAction::triggered, this, &MainWindow::openAboutQt);
 
-	helpMenu->addAction(aboutAct);
-	helpMenu->addAction(aboutQtAct);
+	_helpMenu->addAction(_aboutAct);
+	_helpMenu->addAction(_aboutQtAct);
+
+	setText();
 }
 
 void MainWindow::createWidgets()
@@ -150,6 +158,47 @@ void MainWindow::createDinner()
 	connect(_dinner, &Dinner::philosopherStatus, _logWidget, &LogWidget::philStatusChanged);
 	connect(_dinner, &Dinner::philosopherStatus, _sceneManager, &DinnerSceneManager::philStatusChanged);
 	connect(_dinner, &Dinner::forkStatus, _sceneManager, &DinnerSceneManager::forkStatusChanged);
+}
+
+void MainWindow::setText()
+{
+	this->setWindowTitle(tr("Dining Philosophers"));
+
+	_actionMenu->setTitle(tr("&Actions"));
+	_langMenu->setTitle(tr("&Language"));
+	_helpMenu->setTitle(tr("&Help"));
+
+	_startDinnerAct->setText(tr("&Start Dinner"));
+	_startDinnerAct->setToolTip(tr("Let the dinner begins"));
+	_stopDinnerAct->setText(tr("Sto&p Dinner"));
+	_stopDinnerAct->setToolTip(tr("Enough of this nonsense"));
+	_settingsAct->setText(tr("Se&ttings..."));
+	_settingsAct->setToolTip(tr("Settings"));
+	_exitAct->setText(tr("&Exit"));
+	_exitAct->setToolTip(tr("Go away"));
+	_engAct->setText(tr("&English"));;
+	_rusAct->setText(tr("&Russian"));;
+	_aboutAct->setText(tr("A&bout..."));;
+	_aboutQtAct->setText(tr("About &Qt..."));;
+}
+
+void MainWindow::loadTranslator()
+{
+	QString lang;
+	QAction* action = qobject_cast<QAction*>(sender());
+	if (!action)
+		lang = _language.isEmpty() ? "english" : _language;
+	else
+		lang = action->data().toString();
+
+	QTranslator* translator = new QTranslator(this);
+	bool res = translator->load(lang, qApp->applicationDirPath() + "/translations/");
+	if (!res)
+		return;
+
+	qApp->installTranslator(translator);
+	_language = lang;
+	setText();
 }
 
 void MainWindow::openSettingsDialog()

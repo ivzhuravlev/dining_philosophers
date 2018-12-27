@@ -30,6 +30,7 @@ private slots:
 	void openSettingsDialog();
 	void openAbout();
 	void openAboutQt();
+	void loadTranslator();
 
 private:
 	void loadSettings();
@@ -37,10 +38,12 @@ private:
 	void createActions();
 	void createWidgets();
 	void createDinner();
+	void setText();
 
 	QRect findAvailableWindowGeometry();
 
-	QRect _availGeometry;
+	QRect	_availGeometry;
+	QString	_language;
 
 	QSplitter*		_splitter;
 	QGraphicsView*	_dinnerView;
@@ -48,10 +51,19 @@ private:
 
 	Dinner*				_dinner;
 	DinnerSceneManager* _sceneManager;
+
+	QMenu*		_actionMenu;
+	QMenu*		_langMenu;
+	QMenu*		_helpMenu;
 	
 	QAction*	_startDinnerAct;
 	QAction*	_stopDinnerAct;
 	QAction*	_settingsAct;
+	QAction*	_exitAct;
+	QAction*	_engAct;
+	QAction*	_rusAct;
+	QAction*	_aboutAct;
+	QAction*	_aboutQtAct;
 	
 	DinnerSettings		_dinnerSettings;
 	SceneSettings		_sceneSettings;

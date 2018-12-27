@@ -25,6 +25,13 @@ void SettingsSerializer::saveWinSettings(const QByteArray & geometry, bool maxim
 	_settings->endGroup();
 }
 
+void SettingsSerializer::saveLangSettings(const QString & lang)
+{
+	_settings->beginGroup("LanguageSettings");
+	_settings->setValue("Language", lang);
+	_settings->endGroup();
+}
+
 void SettingsSerializer::saveDinnerSettings(const DinnerSettings & dinSet)
 {
 	_settings->beginGroup("DinnerSettings");
@@ -75,6 +82,15 @@ QByteArray SettingsSerializer::loadWinSettings(bool& maximized) const
 	_settings->beginGroup("WindowSettings");
 	QByteArray result = _settings->value("Geometry").toByteArray();
 	maximized = _settings->value("Maximized").toBool();
+	_settings->endGroup();
+
+	return result;
+}
+
+QString SettingsSerializer::loadLangSettings() const
+{
+	_settings->beginGroup("LanguageSettings");
+	QString result = _settings->value("Language").toString();
 	_settings->endGroup();
 
 	return result;
