@@ -44,6 +44,3 @@ add_library(${dphCore_PROJECT} STATIC ${H_FILES} ${CPP_FILES})
 
 # Set dependencies to link
 target_link_libraries(${dphCore_PROJECT} Qt5::Core)
-
-# Set unit test directory
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/test")
