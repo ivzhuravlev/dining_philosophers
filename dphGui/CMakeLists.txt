@@ -48,15 +48,12 @@ source_group("Resource Files" FILES ${QRC_FILES})
 # Set name of source group for generated files
 source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
 
+# Create .qm files from .ts files
+qt5_add_translation(QM_FILES ${TS_FILES})
+
 # Set source group for .ts files
 source_group("Translation Files" FILES ${TS_FILES})
-
-# Create .qm files from .ts files
-qt5_create_translation(QM_FILES ${CPP_FILES} ${TS_FILES})
-
-# Add custom target for generating and updating translation files
-set(dphTranslate dphTranslate)
-add_custom_target(${dphTranslate} DEPENDS ${QM_FILES})
+source_group("Translation Files\\Compiled" FILES ${QM_FILES})
 
 # Set include directories
 include_directories("src" ${COMMON_INCLUDE_DIRECTORY})
@@ -69,10 +66,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
 
 # Set build target
-add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES} ${TS_FILES})
-
-# Set dependency on translation target
-add_dependencies(${dphGui_PROJECT} ${dphTranslate})
+add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES} ${TS_FILES} ${QM_FILES})
 
 # Set dependencies to link
 target_link_libraries(${dphGui_PROJECT} ${dphCore_PROJECT} Qt5::Core Qt5::Gui Qt5::Widgets)
