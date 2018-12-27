@@ -5,16 +5,16 @@
 
 #include <QObject>
 #include <QVector>
-#include <QThread>
-#include <QMutex>
-#include <QSemaphore>
 #include <memory>
 #include <vector>
+
+class QThread;
+class QMutex;
+class QSemaphore;
 
 namespace dph
 {
 	class Philosopher;
-//	struct PhilosopherEvent;
 	enum class PhilosopherStatus;
 	enum class ForkStatus;
 	

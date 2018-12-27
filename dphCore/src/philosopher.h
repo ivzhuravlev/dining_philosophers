@@ -4,9 +4,10 @@
 #include "philparameters.h"
 
 #include <QObject>
-#include <QMutex>
-#include <QSemaphore>
 #include <atomic>
+
+class QMutex;
+class QSemaphore;
 
 namespace dph
 {

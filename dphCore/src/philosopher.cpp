@@ -1,5 +1,7 @@
 #include "philosopher.h"
 #include <QThread>
+#include <QMutex>
+#include <QSemaphore>
 
 using namespace dph;
 

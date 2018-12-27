@@ -3,6 +3,10 @@
 #include "philparameters.h"
 #include "philosopher.h"
 
+#include <QThread>
+#include <QMutex>
+#include <QSemaphore>
+
 using namespace dph;
 
 Dinner::Dinner(const DinnerSettings& settings, QObject* parent) :
