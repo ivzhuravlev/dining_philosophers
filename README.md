@@ -11,6 +11,15 @@ The program consists of two parts.
 
 *dphGui* is a driver GUI application that runs the simulation and supports some customizations through the *Settings* dialog. 
 
+## Application screenshots
+Main window:
+
+![main window](https://github.com/ivzhuravlev/dining_philosophers/blob/master/screenshots/main_window.png "Main window")
+
+Settings dialog:
+
+![settings dialog](https://github.com/ivzhuravlev/dining_philosophers/blob/master/screenshots/settings.png "Settings dialog")
+
 ## Build requrements
 - CMake version >= 3.11
 - Qt version >= 5.9
