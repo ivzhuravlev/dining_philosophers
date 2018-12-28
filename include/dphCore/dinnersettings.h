@@ -1,11 +1,12 @@
 #pragma once
 #include <chrono>
+#include "dphCore_global.h"
 
 namespace dph
 {
 	using namespace std::chrono_literals;
 
-	struct DinnerSettings
+	struct DPHCORE_EXPORT DinnerSettings
 	{
 		DinnerSettings(int philnum,
 			std::chrono::milliseconds eatdur,
@@ -29,14 +30,14 @@ namespace dph
 		std::chrono::milliseconds thinkDur;
 	};
 
-	inline bool operator==(const DinnerSettings& lhs, const DinnerSettings& rhs)
+	DPHCORE_EXPORT inline bool operator==(const DinnerSettings& lhs, const DinnerSettings& rhs)
 	{
 		return lhs.philNum == rhs.philNum &&
 			lhs.eatDur == rhs.eatDur &&
 			lhs.thinkDur == rhs.thinkDur;
 	}
 
-	inline bool operator!=(const DinnerSettings& lhs, const DinnerSettings& rhs)
+	DPHCORE_EXPORT inline bool operator!=(const DinnerSettings& lhs, const DinnerSettings& rhs)
 	{
 		return !(lhs == rhs);
 	}

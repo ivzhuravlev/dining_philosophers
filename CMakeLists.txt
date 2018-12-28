@@ -5,6 +5,8 @@ project(dining_philosophers)
 get_filename_component(CMAKE_SOURCE_DIR_PATH ${CMAKE_SOURCE_DIR} ABSOLUTE)
 set(COMMON_INCLUDE_DIRECTORY "${CMAKE_SOURCE_DIR_PATH}/include")
 
+option(BUILD_SHARED_LIBS "Build shared library" OFF)
+
 add_subdirectory(dphCore)
 add_subdirectory(dphGui)
 

@@ -1,9 +1,10 @@
+#include "dphCore/dphCore_global.h"
+#include "dphCore/dinner.h"
 #include "mainwindow.h"
 #include "logwidget.h"
 #include "dinnerscenemanager.h"
 #include "settingsserializer.h"
 #include "settingsdialog.h"
-#include "dphCore/dinner.h"
 
 #include <QApplication>
 #include <QScreen>

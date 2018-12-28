@@ -17,6 +17,7 @@ set(H_FILES "${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinner.h"
 			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinnersettings.h"
 			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/status.h"
 			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philevent.h"
+			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dphCore_global.h"
 			"src/philparameters.h"
 			"src/philosopher.h")
 			
@@ -29,18 +30,19 @@ source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
 # Set include current directory
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# Set additional definitions
+add_definitions(-DDPHCORE_LIB)
+
 # Set include directories
 include_directories("src" ${COMMON_INCLUDE_DIRECTORY})
 
 # Set output directories
-get_filename_component(CMAKE_BINARY_DIR_PATH ${CMAKE_BINARY_DIR} ABSOLUTE)
-set(dph_OUTPUT_FOLDER "${CMAKE_BINARY_DIR_PATH}/bin")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${dph_OUTPUT_FOLDER})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 # Set build target
-add_library(${dphCore_PROJECT} STATIC ${H_FILES} ${CPP_FILES})
+add_library(${dphCore_PROJECT} ${H_FILES} ${CPP_FILES})
 
 # Set dependencies to link
 target_link_libraries(${dphCore_PROJECT} Qt5::Core)

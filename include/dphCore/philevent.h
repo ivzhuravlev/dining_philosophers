@@ -1,8 +1,9 @@
 #pragma once
+#include "dphCore_global.h"
 
 namespace dph
 {
-	enum Event
+	enum DPHCORE_EXPORT Event
 		{
 			Eating = 0,
 			Thinking,
@@ -14,7 +15,7 @@ namespace dph
 			Finished
 		};
 	
-	struct PhilosopherEvent
+	struct DPHCORE_EXPORT PhilosopherEvent
 	{
 		PhilosopherEvent() = default;
 

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "dphCore/philevent.h"
+#include "dphCore_global.h"
+#include "philevent.h"
 #include "dinnersettings.h"
 
 #include <QObject>
@@ -18,7 +19,7 @@ namespace dph
 	enum class PhilosopherStatus;
 	enum class ForkStatus;
 	
-	class Dinner : public QObject
+	class DPHCORE_EXPORT Dinner : public QObject
 	{
 		Q_OBJECT
 		
