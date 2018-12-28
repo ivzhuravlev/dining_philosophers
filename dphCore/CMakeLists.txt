@@ -13,12 +13,13 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
 # Set source files to build
-set(H_FILES "${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinner.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinnersettings.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/status.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philevent.h"
-			"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dphCore_global.h"
-			"src/philparameters.h"
+set(H_EXT_FILES "${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinner.h"
+				"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinnersettings.h"
+				"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/status.h"
+				"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/philevent.h"
+				"${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dphCore_global.h")
+			
+set(H_FILES "src/philparameters.h"
 			"src/philosopher.h")
 			
 set(CPP_FILES "src/dinner.cpp"
@@ -42,7 +43,20 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 # Set build target
-add_library(${dphCore_PROJECT} ${H_FILES} ${CPP_FILES})
+add_library(${dphCore_PROJECT} ${H_FILES} ${H_EXT_FILES} ${CPP_FILES})
 
 # Set dependencies to link
 target_link_libraries(${dphCore_PROJECT} Qt5::Core)
+
+# Specify public headers to istall target
+set_target_properties(${dphCore_PROJECT} PROPERTIES PUBLIC_HEADER "${H_EXT_FILES}")
+
+#include to use CMAKE_INSTALL_<DIR> variables
+include(GNUInstallDirs)
+
+# Set install target for release config
+install(TARGETS ${dphCore_PROJECT} CONFIGURATIONS Release
+									RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+									LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+									ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+									PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
