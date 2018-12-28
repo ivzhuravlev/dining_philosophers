@@ -10,7 +10,7 @@ set(dphCore_PROJECT ${dphCore_PROJECT} PARENT_SCOPE)
 set(CMAKE_AUTOMOC ON)
 
 # Find necessary Qt packages
-find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
+find_package(Qt5 COMPONENTS Core REQUIRED)
 
 # Set source files to build
 set(H_FILES "${COMMON_INCLUDE_DIRECTORY}/${dphCore_PROJECT}/dinner.h"

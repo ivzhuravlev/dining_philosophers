@@ -12,7 +12,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 # Find necessary Qt packages
-find_package(Qt5 COMPONENTS Core Gui Widgets LinguistTools CONFIG REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Widgets LinguistTools REQUIRED)
 
 # Set source files to build
 set(H_FILES src/mainwindow.h
