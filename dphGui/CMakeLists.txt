@@ -70,11 +70,14 @@ add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES} ${TS
 # Set dependencies to link
 target_link_libraries(${dphGui_PROJECT} ${dphCore_PROJECT} Qt5::Core Qt5::Gui Qt5::Widgets)
 
+# List of Qt target files
+set(QT_TARGET_FILES $<TARGET_FILE:Qt5::Core>
+					$<TARGET_FILE:Qt5::Gui>
+					$<TARGET_FILE:Qt5::Widgets>)
+
 # Copy qt .dll's to .exe file
-add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Core>
-																						$<TARGET_FILE:Qt5::Gui>
-																						$<TARGET_FILE:Qt5::Widgets>
-																						$<TARGET_FILE_DIR:${dphGui_PROJECT}>)
+add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_different	${QT_TARGET_FILES}
+																							$<TARGET_FILE_DIR:${dphGui_PROJECT}>)
 
 # Copy translation files .qm to .exe file
 add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_different 
@@ -82,3 +85,12 @@ ${CMAKE_CURRENT_BINARY_DIR}/english.qm $<TARGET_FILE_DIR:${dphGui_PROJECT}>/tran
 
 add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_different 
 ${CMAKE_CURRENT_BINARY_DIR}/russian.qm $<TARGET_FILE_DIR:${dphGui_PROJECT}>/translations/russian.qm)
+
+# Install binaries
+install(TARGETS ${dphGui_PROJECT} CONFIGURATIONS Release RUNTIME DESTINATION .)
+
+# Install Qt's dlls
+install(FILES ${QT_TARGET_FILES} DESTINATION .)
+
+# Install translation files
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/english.qm ${CMAKE_CURRENT_BINARY_DIR}/russian.qm DESTINATION translations)

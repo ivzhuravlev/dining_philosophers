@@ -48,15 +48,6 @@ add_library(${dphCore_PROJECT} ${H_FILES} ${H_EXT_FILES} ${CPP_FILES})
 # Set dependencies to link
 target_link_libraries(${dphCore_PROJECT} Qt5::Core)
 
-# Specify public headers to istall target
-set_target_properties(${dphCore_PROJECT} PROPERTIES PUBLIC_HEADER "${H_EXT_FILES}")
-
-#include to use CMAKE_INSTALL_<DIR> variables
-include(GNUInstallDirs)
-
 # Set install target for release config
-install(TARGETS ${dphCore_PROJECT} CONFIGURATIONS Release
-									RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-									LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-									ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-									PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(TARGETS ${dphCore_PROJECT} CONFIGURATIONS Release	RUNTIME DESTINATION .
+															ARCHIVE DESTINATION .)
