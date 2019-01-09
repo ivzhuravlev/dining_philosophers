@@ -5,7 +5,7 @@ Simple solution of classic dining philosophers problem
 This application is the simulation of [dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem). A solution of this problem (and many other insteresting ones) is described in details in a wonderful free book [The Little Book of Semaphores](http://greenteapress.com/wp/semaphores/). To avoid deadlocks the Footman Semaphore approach was applied. Number of philosophers is not limited.
 
 ## Application structure
-The program consists of two parts.
+The program consists of two parts:
 
 *dphCore* is a library that contains dinner simulation logic.
 
@@ -20,6 +20,6 @@ Settings dialog:
 
 ![settings dialog](https://github.com/ivzhuravlev/dining_philosophers/blob/master/screenshots/settings.png "Settings dialog")
 
-## Build requrements
+## Build requirements
 - CMake version >= 3.11
 - Qt version >= 5.9
