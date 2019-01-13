@@ -67,6 +67,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 # Set build target
 add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES} ${TS_FILES} ${QM_FILES})
 
+# Set executable name
+set_target_properties(${dphGui_PROJECT} PROPERTIES OUTPUT_NAME "dining_philosophers")
+
 # Set dependencies to link
 target_link_libraries(${dphGui_PROJECT} ${dphCore_PROJECT} Qt5::Core Qt5::Gui Qt5::Widgets)
 
