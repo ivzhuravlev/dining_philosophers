@@ -41,6 +41,16 @@ if(BUILD_IFW_INSTALLER)
 	set(CPACK_IFW_PACKAGE_WIZARD_STYLE Modern)
 	set(CPACK_IFW_PACKAGE_CONTROL_SCRIPT "${CMAKE_SOURCE_DIR}/scripts/controlscript.qs")
 
+	cpack_add_component(${CPACK_PACKAGE_NAME})
+	cpack_ifw_configure_component(${CPACK_PACKAGE_NAME}
+		FORCED_INSTALLATION
+		DISPLAY_NAME ${CPACK_IFW_PACKAGE_TITLE}
+		DESCRIPTION "Install component"
+		VERSION 1.0.1
+		RELEASE_DATE 2019-01-13
+		SCRIPT "${CMAKE_SOURCE_DIR}/scripts/packagescript.qs"
+	)
+
 	list(APPEND CPACK_GENERATOR IFW)
 endif()
 
