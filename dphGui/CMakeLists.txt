@@ -36,7 +36,8 @@ set(CPP_FILES	src/mainwindow.cpp
 				src/visualsettingswidget.cpp)
 
 # Set Qt resources files
-set(QRC_FILES	src/resources.qrc)
+set(QRC_FILES	src/resources.qrc
+				src/icon.rc)
 
 # Set Qt Linguist translation files
 set(TS_FILES	src/translations/english.ts
