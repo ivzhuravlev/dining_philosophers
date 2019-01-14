@@ -20,5 +20,5 @@ before_build:
   - cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_PREFIX_PATH="C:\Qt\5.11.2\msvc2017_64\lib\cmake\Qt5" -DBUILD_SHARED_LIBS=ON ..
   
 build:
-  project: dining_philosophers.sln
+  project: c:\projects\dining_philosophers\build\dining_philosophers.sln
 
