@@ -91,10 +91,12 @@ add_custom_command(TARGET ${dphGui_PROJECT} COMMAND ${CMAKE_COMMAND} -E copy_if_
 ${CMAKE_CURRENT_BINARY_DIR}/russian.qm $<TARGET_FILE_DIR:${dphGui_PROJECT}>/translations/russian.qm)
 
 # Install binaries
-install(TARGETS ${dphGui_PROJECT} CONFIGURATIONS Release RUNTIME DESTINATION .)
+install(TARGETS ${dphGui_PROJECT} CONFIGURATIONS Release RUNTIME DESTINATION .
+		COMPONENT ${dph_COMPONENT_NAME})
 
 # Install Qt's dlls
-install(FILES ${QT_TARGET_FILES} DESTINATION .)
+install(FILES ${QT_TARGET_FILES} DESTINATION . COMPONENT ${dph_COMPONENT_NAME})
 
 # Install translation files
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/english.qm ${CMAKE_CURRENT_BINARY_DIR}/russian.qm DESTINATION translations)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/english.qm ${CMAKE_CURRENT_BINARY_DIR}/russian.qm DESTINATION translations
+		COMPONENT ${dph_COMPONENT_NAME})

@@ -4,6 +4,7 @@ project(dining_philosophers)
 
 get_filename_component(CMAKE_SOURCE_DIR_PATH ${CMAKE_SOURCE_DIR} ABSOLUTE)
 set(COMMON_INCLUDE_DIRECTORY "${CMAKE_SOURCE_DIR_PATH}/include")
+set(dph_COMPONENT_NAME "DiningPhilosophers")
 
 option(BUILD_SHARED_LIBS "Build shared library" OFF)
 
@@ -41,8 +42,8 @@ if(BUILD_IFW_INSTALLER)
 	set(CPACK_IFW_PACKAGE_WIZARD_STYLE Modern)
 	set(CPACK_IFW_PACKAGE_CONTROL_SCRIPT "${CMAKE_SOURCE_DIR}/scripts/controlscript.qs")
 
-	cpack_add_component(${CPACK_PACKAGE_NAME})
-	cpack_ifw_configure_component(${CPACK_PACKAGE_NAME}
+	cpack_add_component(${dph_COMPONENT_NAME})
+	cpack_ifw_configure_component(${dph_COMPONENT_NAME}
 		FORCED_INSTALLATION
 		DISPLAY_NAME ${CPACK_IFW_PACKAGE_TITLE}
 		DESCRIPTION "Install component"

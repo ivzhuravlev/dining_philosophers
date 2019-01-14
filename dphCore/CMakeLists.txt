@@ -50,4 +50,5 @@ target_link_libraries(${dphCore_PROJECT} Qt5::Core)
 
 # Set install target for release config
 install(TARGETS ${dphCore_PROJECT} CONFIGURATIONS Release	RUNTIME DESTINATION .
-															ARCHIVE DESTINATION .)
+															ARCHIVE DESTINATION .
+															COMPONENT ${dph_COMPONENT_NAME})
