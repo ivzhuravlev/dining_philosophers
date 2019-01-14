@@ -27,3 +27,4 @@ Settings dialog:
 ## Build requirements
 - CMake version >= 3.11
 - Qt version >= 5.9
+- Qt IFW version >= 3.0 (optional)
