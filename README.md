@@ -1,4 +1,7 @@
 # dining_philosophers
+
+[![Build status](https://ci.appveyor.com/api/projects/status/vqxf2tauhe7717rp?svg=true)](https://ci.appveyor.com/project/ivzhuravlev/dining-philosophers)
+
 Simple solution of classic dining philosophers problem.
 
 [Latest version .zip archive](https://github.com/ivzhuravlev/dining_philosophers/blob/master/installer/DiningPhilosophers-1.0.1-win32.zip)
