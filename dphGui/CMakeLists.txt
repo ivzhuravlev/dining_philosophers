@@ -49,9 +49,15 @@ source_group("Resource Files" FILES ${QRC_FILES})
 # Set name of source group for generated files
 source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
 
+# Option for rescan translations
+option(RESCAN_TRANSLATIONS OFF)
+
 # Create .qm files from .ts files
+if(RESCAN_TRANSLATIONS)
+qt5_create_translation(QM_FILES ${CPP_FILES} ${TS_FILES})
+else()
 qt5_add_translation(QM_FILES ${TS_FILES})
-#qt5_create_translation(QM_FILES ${CPP_FILES} ${TS_FILES})
+endif()
 
 # Set source group for .ts files
 source_group("Translation Files" FILES ${TS_FILES})
