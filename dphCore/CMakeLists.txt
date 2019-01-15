@@ -49,6 +49,7 @@ add_library(${dphCore_PROJECT} ${H_FILES} ${H_EXT_FILES} ${CPP_FILES})
 target_link_libraries(${dphCore_PROJECT} Qt5::Core)
 
 # Set install target for release config
+if(BUILD_SHARED_LIBS)
 install(TARGETS ${dphCore_PROJECT} CONFIGURATIONS Release	RUNTIME DESTINATION .
-															ARCHIVE DESTINATION .
 															COMPONENT ${dph_COMPONENT_NAME})
+endif()
