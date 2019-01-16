@@ -8,6 +8,10 @@ set(dph_COMPONENT_NAME "DiningPhilosophers")
 
 option(BUILD_SHARED_LIBS "Build shared library" OFF)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 add_subdirectory(dphCore)
 add_subdirectory(dphGui)
 
