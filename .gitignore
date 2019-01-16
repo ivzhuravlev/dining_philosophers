@@ -1,4 +1,6 @@
 # Build results
 [Bb]uild/
+[Bb]uild_[Rr]elease/
+[Bb]uild_[Dd]ebug/
 [Bb]uild_x64/
 
