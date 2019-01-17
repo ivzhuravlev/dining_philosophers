@@ -4,3 +4,5 @@
 [Bb]uild_[Dd]ebug/
 [Bb]uild_x64/
 
+# QtCreator IDE file
+*.txt.user
