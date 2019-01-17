@@ -36,8 +36,8 @@ void SettingsSerializer::saveDinnerSettings(const DinnerSettings & dinSet)
 {
 	_settings->beginGroup("DinnerSettings");
 	_settings->setValue("PhilNum", dinSet.philNum);
-	_settings->setValue("EatDuration", dinSet.eatDur.count());
-	_settings->setValue("ThinkDuration", dinSet.thinkDur.count());
+	_settings->setValue("EatDuration", static_cast<int>(dinSet.eatDur.count()));
+	_settings->setValue("ThinkDuration", static_cast<int>(dinSet.thinkDur.count()));
 	_settings->endGroup();
 }
 
