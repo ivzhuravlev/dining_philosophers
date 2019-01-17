@@ -20,11 +20,11 @@ configuration:
   
 environment:
   matrix:
-    - GENERATOR "Visual Studio 15 2017 Win64"
-      QTDIR "C:\Qt\5.11.2\msvc2017_64\lib\cmake\Qt5"
+    - GENERATOR: "Visual Studio 15 2017 Win64"
+      QTDIR: "C:\\Qt\\5.11.2\\msvc2017_64\\lib\\cmake\\Qt5"
     
-    - GENERATOR "Visual Studio 14 2015"
-      QTDIR "C:\Qt\5.11.2\msvc2015\lib\cmake\Qt5"
+    - GENERATOR: "Visual Studio 14 2015"
+      QTDIR: "C:\\Qt\\5.11.2\\msvc2015\\lib\\cmake\\Qt5"
     
 matrix:
   exclude:
