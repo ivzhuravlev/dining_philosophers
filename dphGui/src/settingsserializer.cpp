@@ -102,8 +102,12 @@ DinnerSettings SettingsSerializer::loadDinnerSettings() const
 
 	_settings->beginGroup("DinnerSettings");
 	def.philNum = _settings->value("PhilNum", def.philNum).toInt();
-	def.eatDur = std::chrono::milliseconds(_settings->value("EatDuration", def.eatDur.count()).toInt());
-	def.thinkDur = std::chrono::milliseconds(_settings->value("ThinkDuration", def.thinkDur.count()).toInt());
+
+	auto eatDurDefaultValue = QVariant(static_cast<int>(def.eatDur.count()));
+	def.eatDur = std::chrono::milliseconds(_settings->value("EatDuration", eatDurDefaultValue).toInt());
+
+	auto thinkDurDefaultValue = QVariant(static_cast<int>(def.thinkDur.count()));
+	def.thinkDur = std::chrono::milliseconds(_settings->value("ThinkDuration", thinkDurDefaultValue).toInt());
 	_settings->endGroup();
 
 	return def;
