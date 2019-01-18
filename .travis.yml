@@ -26,6 +26,12 @@ before_install:
 install:
   - sudo apt-get install -qq qt510base qt510multimedia qt510translations qt510tools ; source /opt/qt510/bin/qt510-env.sh ; export QTHOME=/opt/qt510
 
+  - curl -o cmake.tar.gz -O https://cmake.org/files/v3.12/cmake-3.12.3-Linux-x86_64.tar.gz
+  - mkdir /opt/cmake
+  - tar -xf cmake.tar.gz -C /opt/cmake --strip-components=1
+  - rm -f cmake.tar.gz
+  - export PATH=/opt/cmake/bin:${PATH}
+
 before_script:
   - mkdir build
   - cd build
