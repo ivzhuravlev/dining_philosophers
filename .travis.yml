@@ -32,10 +32,9 @@ install:
   - rm -f cmake.tar.gz
   - export PATH=/opt/cmake/bin:${PATH}
 
-before_script:
+script:
   - mkdir build
   - cd build
   - cmake -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} ..
+  - make
 
-script:
-  - cmake --build
