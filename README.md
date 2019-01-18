@@ -1,6 +1,7 @@
 # dining_philosophers
 
 [![Build status](https://ci.appveyor.com/api/projects/status/vqxf2tauhe7717rp?svg=true)](https://ci.appveyor.com/project/ivzhuravlev/dining-philosophers)
+[![Build Status](https://travis-ci.com/ivzhuravlev/dining_philosophers.svg?branch=master)](https://travis-ci.com/ivzhuravlev/dining_philosophers)
 
 Simple solution of classic dining philosophers problem.
 
