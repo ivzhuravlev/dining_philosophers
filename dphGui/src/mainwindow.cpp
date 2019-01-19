@@ -112,7 +112,10 @@ void MainWindow::createActions()
 	actGroup->setExclusive(true);
 	actGroup->addAction(_engAct);
 	actGroup->addAction(_rusAct);
-//	_engAct->setChecked(true);
+	if (_language.isEmpty() || _language.contains("english"))
+		_engAct->setChecked(true);
+	else
+		_rusAct->setChecked(true);
 
 	_langMenu->addAction(_engAct);
 	_langMenu->addAction(_rusAct);
