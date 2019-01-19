@@ -5,9 +5,15 @@
 
 Simple solution of classic dining philosophers problem.
 
-[Latest version .zip archive](https://github.com/ivzhuravlev/dining_philosophers/blob/master/installer/DiningPhilosophers-1.0.1-win32.zip)
+## Downloads
 
-[Latest version Windows Installer](https://github.com/ivzhuravlev/dining_philosophers/blob/master/installer/DiningPhilosophers-1.0.1-win32.exe)
+[Latest 32bit version .zip archive](https://github.com/ivzhuravlev/dining_philosophers/releases/download/v1.1.0/DiningPhilosophers-1.1.0-win32.zip)
+
+[Latest 64bit version .zip archive](https://github.com/ivzhuravlev/dining_philosophers/releases/download/v1.1.0/DiningPhilosophers-1.1.0-win64.zip)
+
+[Latest 32bit version Windows Installer](https://github.com/ivzhuravlev/dining_philosophers/releases/download/v1.1.0/DiningPhilosophers-1.1.0-win32.exe)
+
+[Latest 64bit version Windows Installer](https://github.com/ivzhuravlev/dining_philosophers/releases/download/v1.1.0/DiningPhilosophers-1.1.0-win64.exe)
 
 ## Problem description
 This application is the simulation of [dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem). A solution of this problem (and many other insteresting ones) is described in details in a wonderful free book [The Little Book of Semaphores](http://greenteapress.com/wp/semaphores/). To avoid deadlocks the Footman Semaphore approach was applied. Number of philosophers is not limited.
