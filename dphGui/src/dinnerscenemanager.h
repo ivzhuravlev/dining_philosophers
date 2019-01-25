@@ -1,6 +1,6 @@
 #pragma once
 #include "dphCore/status.h"
-#include "settings.h"
+#include "settings/settings.h"
 
 #include <QObject>
 #include <QVector>

@@ -17,23 +17,27 @@ find_package(Qt5 COMPONENTS Core Gui Widgets LinguistTools REQUIRED)
 # Set source files to build
 set(H_FILES src/mainwindow.h
 			src/logwidget.h
-			src/dinnerscenemanager.h
-			src/settings.h
-			src/settingsserializer.h
-			src/settingsdialog.h
-			src/dinnersettingswidget.h
-			src/scenesettingswidget.h
-			src/visualsettingswidget.h)
+			src/dinnerscenemanager.h)
+
+set(H_SETTINGS_FILES
+			src/settings/settings.h
+			src/settings/settingsserializer.h
+			src/settings/settingsdialog.h
+			src/settings/dinnersettingswidget.h
+			src/settings/scenesettingswidget.h
+			src/settings/visualsettingswidget.h)
 
 set(CPP_FILES	src/mainwindow.cpp
 				src/main.cpp
 				src/logwidget.cpp
-				src/dinnerscenemanager.cpp
-				src/settingsserializer.cpp
-				src/settingsdialog.cpp
-				src/dinnersettingswidget.cpp
-				src/scenesettingswidget.cpp
-				src/visualsettingswidget.cpp)
+				src/dinnerscenemanager.cpp)
+
+set(CPP_SETTINGS_FILES	
+				src/settings/settingsserializer.cpp
+				src/settings/settingsdialog.cpp
+				src/settings/dinnersettingswidget.cpp
+				src/settings/scenesettingswidget.cpp
+				src/settings/visualsettingswidget.cpp)
 
 # Set Qt resources files
 set(QRC_FILES	src/resources.qrc
@@ -47,7 +51,11 @@ set(TS_FILES	src/translations/english.ts
 source_group("Resource Files" FILES ${QRC_FILES})
 
 # Set name of source group for generated files
-source_group("Generated Files" ${AUTOGEN_SOURCE_GROUP})
+source_group("Generated Files" FILES ${AUTOGEN_SOURCE_GROUP})
+
+# Set name of source groups for settings code
+source_group("Header Files\\settings" FILES ${H_SETTINGS_FILES})
+source_group("Source Files\\settings" FILES ${CPP_SETTINGS_FILES})
 
 # Option for rescan translations
 option(RESCAN_TRANSLATIONS OFF)
@@ -72,7 +80,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 # Set build target
-add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${CPP_FILES} ${QRC_FILES} ${TS_FILES} ${QM_FILES})
+add_executable(${dphGui_PROJECT} WIN32 ${H_FILES} ${H_SETTINGS_FILES}
+${CPP_FILES} ${CPP_SETTINGS_FILES} ${QRC_FILES} ${TS_FILES} ${QM_FILES})
 
 # Set executable name
 set_target_properties(${dphGui_PROJECT} PROPERTIES OUTPUT_NAME "dining_philosophers")

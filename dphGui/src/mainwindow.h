@@ -1,5 +1,5 @@
 #include <QMainWindow>
-#include "settings.h"
+#include "settings/settings.h"
 #include "dphCore/dinnersettings.h"
 
 namespace dph

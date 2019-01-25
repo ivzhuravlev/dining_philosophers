@@ -3,8 +3,8 @@
 #include "mainwindow.h"
 #include "logwidget.h"
 #include "dinnerscenemanager.h"
-#include "settingsserializer.h"
-#include "settingsdialog.h"
+#include "settings/settingsserializer.h"
+#include "settings/settingsdialog.h"
 
 #include <QApplication>
 #include <QScreen>
